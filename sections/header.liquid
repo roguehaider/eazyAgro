@@ -113,14 +113,14 @@
     text-decoration: none !important;
   }
 
-  /* Uniform Icon Sizing */
+  /* Uniform Icon Sizing - All icons (account, cart, search) set to same size */
   .header--compact .header__navigation .svg-wrapper {
-    width: 22px !important;
-    height: 22px !important;
-    min-width: 22px !important;
-    min-height: 22px !important;
-    max-width: 22px !important;
-    max-height: 22px !important;
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -128,31 +128,31 @@
   }
 
   .header--compact .header__navigation .svg-wrapper svg {
-    width: 22px !important;
-    height: 22px !important;
-    min-width: 22px !important;
-    min-height: 22px !important;
-    max-width: 22px !important;
-    max-height: 22px !important;
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
     display: block !important;
   }
 
   .header--compact .header__search .header__icon .svg-wrapper {
-    width: 22px !important;
-    height: 22px !important;
-    min-width: 22px !important;
-    min-height: 22px !important;
-    max-width: 22px !important;
-    max-height: 22px !important;
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
   }
 
   .header--compact .header__search .header__icon .svg-wrapper svg {
-    width: 22px !important;
-    height: 22px !important;
-    min-width: 22px !important;
-    min-height: 22px !important;
-    max-width: 22px !important;
-    max-height: 22px !important;
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
   }
 
   /* Hide text labels */
@@ -160,15 +160,15 @@
     display: none !important;
   }
 
-  /* Ensure cart icon is same size */
+  /* Cart icon needs to be larger due to different viewBox (40x40 vs 18x19) */
   #cart-icon-bubble .svg-wrapper,
   #cart-icon-bubble .svg-wrapper svg {
-    width: 22px !important;
-    height: 22px !important;
-    min-width: 22px !important;
-    min-height: 22px !important;
-    max-width: 22px !important;
-    max-height: 22px !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
   }
 
   /* Hide close icon in search */
@@ -310,19 +310,6 @@
           </li>
         {%- endif -%}
         
-        {%- if shop.customer_accounts_enabled -%}
-          <li>
-            <a
-              href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-              class="header__nav-item header__nav-item--icon"
-              rel="nofollow"
-              aria-label="Account"
-            >
-              <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-            </a>
-          </li>
-        {%- endif -%}
-        
         <li>
           <a href="{{ routes.cart_url }}" class="header__nav-item header__nav-item--icon" id="cart-icon-bubble" aria-label="Cart">
             {% if cart == empty %}
@@ -340,6 +327,19 @@
             {%- endif -%}
           </a>
         </li>
+        
+        {%- if shop.customer_accounts_enabled -%}
+          <li>
+            <a
+              href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+              class="header__nav-item header__nav-item--icon"
+              rel="nofollow"
+              aria-label="Account"
+            >
+              <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+            </a>
+          </li>
+        {%- endif -%}
         
         <li>
           {% render 'header-search', input_id: 'Search-In-Modal' %}
