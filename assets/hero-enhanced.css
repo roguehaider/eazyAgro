@@ -1,0 +1,568 @@
+/* ============================================
+   Enhanced Hero Section Styles
+   Maintains original color scheme:
+   - Greens: #6CA93A, #B8D89A, #D1E4B9
+   - Earthy browns and beiges
+   ============================================ */
+
+/* Hero Section Container Enhancements */
+.banner {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Single Image Hero - Full Width Display */
+.banner--single-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.banner--single-image .banner__media {
+  z-index: 0 !important;
+  position: absolute !important;
+  height: 100% !important;
+  width: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  display: block !important;
+}
+
+.banner--single-image .banner__media img,
+.banner--single-image .banner__media svg,
+.banner--single-image .banner__media picture,
+.banner--single-image .banner__media picture img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Ensure images are visible - they should be at z-index 0 or auto */
+.banner__media {
+  z-index: 0 !important;
+  display: block !important;
+}
+
+.banner__media img,
+.banner__media svg,
+.banner__media picture,
+.banner__media picture img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  min-height: 400px !important;
+}
+
+/* Force image visibility - override any hiding styles */
+.banner .banner__media,
+.banner .banner__media * {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Carousel Mode Styles */
+.hero-slideshow .slideshow__slide .banner__media img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.hero-slideshow .banner__floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(108, 169, 58, 0.02) 0%, rgba(209, 228, 185, 0.01) 100%);
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Floating Objects - Animated Elements */
+.banner__floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.banner__floating-leaf {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  opacity: 0.4;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236CA93A'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  animation: floatLeaf 20s infinite ease-in-out;
+}
+
+.banner__floating-leaf:nth-child(1) {
+  left: 10%;
+  top: 20%;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.banner__floating-leaf:nth-child(2) {
+  left: 80%;
+  top: 60%;
+  animation-delay: 3s;
+  animation-duration: 22s;
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
+}
+
+.banner__floating-leaf:nth-child(3) {
+  left: 50%;
+  top: 10%;
+  animation-delay: 6s;
+  animation-duration: 25s;
+  width: 35px;
+  height: 35px;
+  opacity: 0.35;
+}
+
+.banner__floating-leaf:nth-child(4) {
+  left: 20%;
+  top: 70%;
+  animation-delay: 9s;
+  animation-duration: 20s;
+  width: 25px;
+  height: 25px;
+  opacity: 0.25;
+}
+
+.banner__floating-leaf:nth-child(5) {
+  left: 70%;
+  top: 30%;
+  animation-delay: 12s;
+  animation-duration: 24s;
+  width: 45px;
+  height: 45px;
+  opacity: 0.4;
+}
+
+@keyframes floatLeaf {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(30px, -40px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-20px, -60px) rotate(-5deg);
+  }
+  75% {
+    transform: translate(40px, -30px) rotate(3deg);
+  }
+}
+
+/* Floating Dew Drops */
+.banner__floating-dew {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(209, 228, 185, 0.6) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: floatDew 15s infinite ease-in-out;
+}
+
+.banner__floating-dew:nth-child(6) {
+  left: 15%;
+  top: 25%;
+  animation-delay: 0s;
+}
+
+.banner__floating-dew:nth-child(7) {
+  left: 85%;
+  top: 45%;
+  animation-delay: 2s;
+  width: 6px;
+  height: 6px;
+}
+
+.banner__floating-dew:nth-child(8) {
+  left: 45%;
+  top: 65%;
+  animation-delay: 4s;
+  width: 10px;
+  height: 10px;
+}
+
+.banner__floating-dew:nth-child(9) {
+  left: 75%;
+  top: 15%;
+  animation-delay: 6s;
+  width: 7px;
+  height: 7px;
+}
+
+.banner__floating-dew:nth-child(10) {
+  left: 25%;
+  top: 80%;
+  animation-delay: 8s;
+  width: 9px;
+  height: 9px;
+}
+
+@keyframes floatDew {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(20px, -30px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Enhanced Text Animations */
+.banner__heading {
+  animation: fadeInUp 1s ease-out;
+  position: relative;
+  z-index: 3;
+}
+
+.banner__text {
+  animation: fadeInUp 1s ease-out 0.2s both;
+  position: relative;
+  z-index: 3;
+}
+
+.banner__buttons {
+  animation: fadeInUp 1s ease-out 0.4s both;
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced Button Styling - Better Visibility */
+.banner .button--primary {
+  background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #6CA93A !important;
+  padding: 1.2rem 3rem !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  border-radius: 50px !important;
+  box-shadow: 0 4px 15px rgba(108, 169, 58, 0.4), 
+              0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+}
+
+.banner .button--primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.banner .button--primary:hover::before {
+  left: 100%;
+}
+
+.banner .button--primary:hover {
+  --color-button: 125, 184, 74 !important;
+  --color-button-text: 255, 255, 255 !important;
+  transform: translateY(-3px) scale(1.05) !important;
+  box-shadow: 0 6px 20px rgba(108, 169, 58, 0.5), 
+              0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  background: linear-gradient(135deg, #7DB84A 0%, #6CA93A 100%) !important;
+  background-color: rgb(var(--color-button)) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  border-color: #7DB84A !important;
+}
+
+.banner .button--primary:active {
+  --color-button: 90, 138, 46 !important;
+  --color-button-text: 255, 255, 255 !important;
+  transform: translateY(-1px) scale(1.02) !important;
+  background: linear-gradient(135deg, #5A8A2E 0%, #4A7A1E 100%) !important;
+  background-color: rgb(var(--color-button)) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+/* Text Shadow for Better Readability */
+.banner__box {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.banner__heading {
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), 
+               0 1px 3px rgba(0, 0, 0, 0.2) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px !important;
+}
+
+.banner__text {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35) !important;
+  color: #F7F6F1 !important;
+  font-size: 1.8rem !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+}
+
+/* Image Parallax Effect */
+.banner__media {
+  transition: transform 0.3s ease-out;
+  position: relative !important;
+  z-index: 0 !important;
+}
+
+.banner:hover .banner__media {
+  transform: scale(1.02);
+}
+
+.banner__media img {
+  transition: transform 0.5s ease-out;
+  position: relative !important;
+  z-index: 0 !important;
+  display: block !important;
+  max-width: 100% !important;
+  height: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.banner:hover .banner__media img {
+  transform: scale(1.05);
+}
+
+/* Enhanced Content Box */
+.banner__box {
+  background: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 20px !important;
+  padding: 4rem 3.5rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+}
+
+@media screen and (min-width: 750px) {
+  .banner__box {
+    padding: 5rem 4.5rem !important;
+    max-width: 75rem !important;
+  }
+}
+
+/* Subtle Glow Effect on Text */
+.banner__heading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(ellipse, rgba(108, 169, 58, 0.15) 0%, transparent 70%);
+  z-index: -1;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* Single Image Hero - Remove two-column styles */
+.banner--single-image .banner__media-half {
+  display: none !important;
+}
+
+/* Sparkle Animation for Single Image Hero */
+.banner--single-image .banner__media::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(2px 2px at 60% 70%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.25), transparent),
+    radial-gradient(2px 2px at 40% 60%, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 200% 200%;
+  background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 100% 0%;
+  animation: sparkle 8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+}
+
+@keyframes sparkle {
+  0% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 100% 0%;
+    opacity: 0.3;
+  }
+  50% {
+    background-position: 100% 100%, 0% 0%, 50% 50%, 100% 0%, 0% 100%;
+    opacity: 0.6;
+  }
+  100% {
+    background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%, 100% 0%;
+    opacity: 0.3;
+  }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 749px) {
+  .banner__floating-leaf,
+  .banner__floating-dew {
+    display: none;
+  }
+  
+  .banner__box {
+    background: rgba(0, 0, 0, 0.5) !important;
+    padding: 3rem 2rem !important;
+  }
+  
+  .banner .button--primary {
+    --color-button: 108, 169, 58 !important;
+    --color-button-text: 255, 255, 255 !important;
+    padding: 1rem 2.5rem !important;
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+    background-color: rgb(var(--color-button)) !important;
+  }
+  
+  .banner__text {
+    font-size: 1.6rem !important;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .banner__floating-leaf,
+  .banner__floating-dew,
+  .banner__heading,
+  .banner__text,
+  .banner__buttons,
+  .banner__heading::after,
+  .banner__media-half:nth-child(2)::before {
+    animation: none !important;
+  }
+  
+  .banner:hover .banner__media,
+  .banner:hover .banner__media img {
+    transform: none !important;
+  }
+}
+
+/* Additional Polish - Subtle Entrance Animation */
+.banner__box > * {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.banner__box > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.banner__box > *:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.banner__box > *:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+/* Enhanced Focus States */
+.banner .button--primary:focus-visible {
+  --color-button: 108, 169, 58 !important;
+  --color-button-text: 255, 255, 255 !important;
+  outline: 3px solid #6CA93A;
+  outline-offset: 3px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+  background-color: rgb(var(--color-button)) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+/* Ensure button text is always white and bold */
+.banner .button--primary,
+.banner .button--primary *,
+.banner a.button--primary,
+.banner a.button.button--primary {
+  --color-button: 108, 169, 58 !important;
+  --color-button-text: 255, 255, 255 !important;
+  --alpha-button-background: 1 !important;
+  background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+  background-color: rgb(var(--color-button)) !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}

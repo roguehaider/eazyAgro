@@ -1,0 +1,708 @@
+/* ============================================
+   Enhanced Featured Products Section Styles
+   Maintains original color scheme:
+   - Greens: #6CA93A, #B8D89A, #D1E4B9
+   - Earthy browns and beiges
+   ============================================ */
+
+/* Section Container Enhancements */
+#collection-featured-collection,
+.collection.collection--enhanced {
+  position: relative;
+  overflow: visible;
+  padding: 4rem 0 !important;
+  background: linear-gradient(180deg, rgba(247, 246, 241, 0.5) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+/* Floating Elements for Background */
+.collection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(108, 169, 58, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(184, 216, 154, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Section Title Enhancements */
+.collection__title .title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 3rem !important;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.collection__title .title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #6CA93A 0%, #B8D89A 100%);
+  border-radius: 2px;
+  animation: underlineGrow 0.8s ease-out 0.3s both;
+}
+
+@keyframes underlineGrow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Product Grid Enhancements */
+.product-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* Product Card Enhancements */
+.card-wrapper {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease;
+  animation: cardFadeIn 0.6s ease-out both;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Staggered Animation for Cards */
+.grid__item:nth-child(1) .card-wrapper {
+  animation-delay: 0.1s;
+}
+
+.grid__item:nth-child(2) .card-wrapper {
+  animation-delay: 0.2s;
+}
+
+.grid__item:nth-child(3) .card-wrapper {
+  animation-delay: 0.3s;
+}
+
+.grid__item:nth-child(4) .card-wrapper {
+  animation-delay: 0.4s;
+}
+
+.grid__item:nth-child(5) .card-wrapper {
+  animation-delay: 0.5s;
+}
+
+.grid__item:nth-child(6) .card-wrapper {
+  animation-delay: 0.6s;
+}
+
+/* Card Hover Effects */
+.card-wrapper:hover {
+  transform: translateY(-12px) scale(1.02) !important;
+  z-index: 10;
+}
+
+.card-wrapper:hover .card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
+              0 8px 16px rgba(108, 169, 58, 0.2) !important;
+}
+
+/* Card Styling */
+.collection--enhanced .card {
+  border-radius: 16px !important;
+  overflow: hidden;
+  background: #FFFFFF !important;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
+              0 2px 4px rgba(0, 0, 0, 0.04) !important;
+  position: relative;
+}
+
+/* Ensure Card Inner maintains proper aspect ratio */
+.collection--enhanced .card__inner {
+  position: relative;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.collection--enhanced .card__inner.ratio {
+  position: relative;
+  width: 100% !important;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(108, 169, 58, 0.02) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-wrapper:hover .card::before {
+  opacity: 1;
+}
+
+/* Product Image Container - Fix Full Image Display */
+.collection--enhanced .card__inner.ratio {
+  position: relative !important;
+  width: 100% !important;
+}
+
+.collection--enhanced .card__inner.ratio::before {
+  content: '';
+  display: block;
+  padding-bottom: var(--ratio-percent) !important;
+}
+
+.collection--enhanced .card__media {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0 !important;
+  background: transparent !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Override base card media margin */
+.collection--enhanced .card .card__inner .card__media {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Remove any background color that might show through */
+.collection--enhanced .card__media::before {
+  display: none !important;
+}
+
+.collection--enhanced .card__media::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(108, 169, 58, 0.05) 100%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.collection--enhanced .card-wrapper:hover .card__media::after {
+  opacity: 1;
+}
+
+/* Image Zoom Effect - Fix Image Display */
+.collection--enhanced .card__media .media {
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  display: block !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Override base card media positioning and margin */
+.collection--enhanced .card .card__inner .card__media {
+  margin: 0 !important;
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.collection--enhanced .card__media {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+.collection--enhanced .card__media .media img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Ensure all images in card media fill container */
+.collection--enhanced .card__media img,
+.collection--enhanced .card__media .media img,
+.collection--enhanced .card__media .media--transparent img,
+.collection--enhanced .card__media .media--hover-effect img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Enhanced Image Hover Effect */
+.collection--enhanced .card__media .media--hover-effect {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  overflow: hidden;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  background: transparent !important;
+}
+
+.collection--enhanced .card__media .media--hover-effect img {
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+              opacity 0.5s ease !important;
+  transform-origin: center;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  will-change: transform, opacity;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Primary Image - Fade out and zoom on hover */
+.collection--enhanced .card-wrapper:hover .card__media .media--hover-effect img:first-of-type {
+  transform: scale(1.15) !important;
+  opacity: 0 !important;
+}
+
+/* Secondary Image Animation - Smooth fade in and zoom on hover */
+.collection--enhanced .card__media .media--hover-effect img:nth-of-type(2) {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  opacity: 0 !important;
+  transform: scale(0.85) !important;
+  transition: opacity 0.6s ease 0.2s,
+              transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s !important;
+  z-index: 2 !important;
+  pointer-events: none;
+}
+
+.collection--enhanced .card-wrapper:hover .card__media .media--hover-effect img:nth-of-type(2) {
+  opacity: 1 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Ensure secondary image is visible when hovered */
+.collection--enhanced .card-wrapper:hover .card__media .media--hover-effect {
+  z-index: 3;
+}
+
+/* Fix image container to prevent green background showing */
+.collection--enhanced .card__media .media--transparent {
+  background: transparent !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+}
+
+.collection--enhanced .card__media .media--transparent img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Ensure card inner doesn't show background */
+.collection--enhanced .card__inner {
+  background: transparent !important;
+  position: relative !important;
+}
+
+.collection--enhanced .card__inner.ratio::before {
+  background: transparent !important;
+}
+
+/* Force image to fill entire container - override any aspect ratio issues */
+.collection--enhanced .card__media {
+  background: transparent !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Override base CSS margin for card media */
+.collection--enhanced .card__media {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Comprehensive image fill fix - ensure all images cover full area */
+.collection--enhanced .card__media img,
+.collection--enhanced .card__media .media img,
+.collection--enhanced .card__media .media--transparent img,
+.collection--enhanced .card__media .media--hover-effect img {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+}
+
+/* Ensure media container fills card media */
+.collection--enhanced .card__media .media,
+.collection--enhanced .card__media .media--transparent,
+.collection--enhanced .card__media .media--hover-effect {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Card Content Padding */
+.collection--enhanced .card__content {
+  padding: 1.5rem 2rem !important;
+}
+
+.collection--enhanced .card__information {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Product Title Styling */
+.collection--enhanced .card__heading {
+  margin-top: 0 !important;
+  margin-bottom: 0.8rem !important;
+  padding-left: 0 !important;
+}
+
+.collection--enhanced .card__heading a {
+  color: #121212 !important;
+  font-weight: 600 !important;
+  transition: color 0.3s ease;
+  text-decoration: none !important;
+  display: block;
+  padding-left: 0 !important;
+}
+
+.collection--enhanced .card-wrapper:hover .card__heading a {
+  color: #6CA93A !important;
+}
+
+/* Price Styling */
+.collection--enhanced .card-information {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.collection--enhanced .card-information .price {
+  font-weight: 700 !important;
+  color: #6CA93A !important;
+  font-size: 1.6rem !important;
+  margin-top: 0.5rem !important;
+  padding-left: 0 !important;
+}
+
+.collection--enhanced .card-information .price--on-sale .price-item--regular {
+  color: #999 !important;
+  text-decoration: line-through;
+  font-weight: 400;
+  margin-right: 0.5rem;
+}
+
+/* Badge Enhancements */
+.card__badge .badge {
+  border-radius: 20px !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 600 !important;
+  font-size: 1.2rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Quick Add Button Enhancements - Remove Square Outline */
+.collection--enhanced .quick-add__submit,
+.collection--enhanced .quick-add__submit.button,
+.collection--enhanced .quick-add__submit.button--secondary,
+.collection--enhanced .quick-add__submit.button--full-width {
+  margin-top: 1rem;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: 0 4px 12px rgba(108, 169, 58, 0.3) !important;
+}
+
+/* Remove button pseudo-elements that create square outline */
+.collection--enhanced .quick-add__submit::before,
+.collection--enhanced .quick-add__submit::after {
+  content: none !important;
+  display: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.collection--enhanced .quick-add__submit:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 6px 16px rgba(108, 169, 58, 0.4) !important;
+  background: linear-gradient(135deg, #7DB84A 0%, #6CA93A 100%) !important;
+  outline: none !important;
+  border: none !important;
+}
+
+.collection--enhanced .quick-add__submit:hover::before,
+.collection--enhanced .quick-add__submit:hover::after {
+  display: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.collection--enhanced .quick-add__submit:focus,
+.collection--enhanced .quick-add__submit:focus-visible,
+.collection--enhanced .quick-add__submit:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(108, 169, 58, 0.3) !important;
+}
+
+.collection--enhanced .quick-add__submit:focus::before,
+.collection--enhanced .quick-add__submit:focus::after,
+.collection--enhanced .quick-add__submit:focus-visible::before,
+.collection--enhanced .quick-add__submit:focus-visible::after,
+.collection--enhanced .quick-add__submit:active::before,
+.collection--enhanced .quick-add__submit:active::after {
+  display: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* View All Button */
+.collection__view-all .button,
+.collection__view-all .link {
+  margin-top: 3rem;
+  padding: 1.2rem 3rem !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+  color: #FFFFFF !important;
+  border: 2px solid #6CA93A !important;
+  box-shadow: 0 4px 15px rgba(108, 169, 58, 0.3) !important;
+}
+
+.collection__view-all .button:hover,
+.collection__view-all .link:hover {
+  transform: translateY(-3px) scale(1.05) !important;
+  box-shadow: 0 6px 20px rgba(108, 169, 58, 0.4) !important;
+  background: linear-gradient(135deg, #7DB84A 0%, #6CA93A 100%) !important;
+}
+
+/* Floating Decorative Elements */
+.collection::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(108, 169, 58, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatElement 6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatElement {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Sparkle Effect on Cards */
+.card-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.6s linear;
+  pointer-events: none;
+  z-index: 2;
+  transform: rotate(0deg);
+}
+
+.card-wrapper:hover::before {
+  opacity: 0.3;
+  transform: rotate(180deg);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 749px) {
+  .collection {
+    padding: 2rem 0 !important;
+  }
+  
+  .card-wrapper:hover {
+    transform: translateY(-8px) scale(1.01) !important;
+  }
+  
+  .collection__title .title::after {
+    width: 40px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .card-wrapper,
+  .card,
+  .media--hover-effect img,
+  .collection__title .title,
+  .badge,
+  .collection::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .card-wrapper:hover {
+    transform: none !important;
+  }
+}
+
+/* Focus States for Accessibility */
+.collection--enhanced .card__heading a:focus-visible {
+  outline: 3px solid #6CA93A;
+  outline-offset: 3px;
+  border-radius: 4px;
+}

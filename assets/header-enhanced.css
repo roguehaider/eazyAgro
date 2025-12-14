@@ -1,0 +1,945 @@
+/* ============================================
+   Enhanced Header Styles with Animations
+   Maintains original color scheme:
+   - Off-white/beige background: #F7F6F1
+   - Light green accent: #D1E4B9
+   - Medium green logo: #6CA93A
+   ============================================ */
+
+/* Top Green Strip */
+.header-top-strip {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #D1E4B9 0%, #B8D89A 50%, #D1E4B9 100%);
+  position: relative;
+  overflow: hidden;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.header-top-strip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer-slide 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes shimmer-slide {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Header Wrapper Enhancements */
+.header-wrapper {
+  background-color: #F7F6F1;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+.header-wrapper:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Compact Horizontal Navbar Layout - High Priority Overrides */
+.header--compact {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0.8rem 3rem !important;
+  min-height: 70px !important;
+  gap: 2rem !important;
+  grid-template-areas: none !important;
+  grid-template-columns: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media screen and (min-width: 990px) {
+  .header--compact {
+    padding: 1rem 3rem !important;
+    min-height: 75px !important;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .header--compact {
+    padding: 0.8rem 1.5rem !important;
+    min-height: 65px !important;
+  }
+}
+
+/* Logo on Left - Override base styles */
+.header--compact .header__heading,
+.header--compact .header__heading-link {
+  justify-self: start !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  grid-area: unset !important;
+  text-align: left !important;
+  order: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  line-height: 0 !important;
+}
+
+.header--compact .header__heading-logo-wrapper {
+  max-width: 180px;
+}
+
+@media screen and (max-width: 989px) {
+  .header--compact .header__heading-logo-wrapper {
+    max-width: 140px;
+  }
+}
+
+.header--compact .header__heading-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+@media screen and (max-width: 989px) {
+  .header--compact .header__heading-logo {
+    max-height: 40px;
+  }
+}
+
+/* Navigation on Right */
+.header--compact .header__navigation {
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  order: 2 !important;
+  margin-left: auto !important;
+}
+
+.header__nav-list {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-wrap: nowrap !important;
+}
+
+.header__nav-list li {
+  list-style: none !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.header__nav-list li::before,
+.header__nav-list li::after {
+  display: none !important;
+  content: none !important;
+}
+
+@media screen and (min-width: 990px) {
+  .header__nav-list {
+    gap: 1rem;
+  }
+}
+
+.header__nav-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.6rem 1rem !important;
+  text-decoration: none !important;
+  color: rgba(var(--color-foreground), 0.75) !important;
+  font-size: 1.4rem !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  border-radius: 6px !important;
+  position: relative !important;
+  white-space: nowrap !important;
+  list-style: none !important;
+  background: none !important;
+  border: none !important;
+}
+
+.header__nav-item:hover {
+  color: #6CA93A !important;
+  background-color: rgba(108, 169, 58, 0.08) !important;
+  transform: translateY(-1px) !important;
+  text-decoration: none !important;
+}
+
+.header__nav-item--active {
+  color: #6CA93A !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.header__nav-item--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, #6CA93A, #B8D89A);
+  border-radius: 2px;
+}
+
+.header__nav-item--icon {
+  padding: 0.5rem !important;
+  min-width: 44px !important;
+  width: auto !important;
+  height: 44px !important;
+  justify-content: center !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+.header__nav-item--icon .svg-wrapper {
+  width: 22px !important;
+  height: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.header__nav-item--icon .svg-wrapper svg {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  display: block !important;
+}
+
+.header__nav-item--icon:hover .svg-wrapper svg {
+  filter: drop-shadow(0 2px 4px rgba(108, 169, 58, 0.3));
+}
+
+/* Hide text labels for icon-only items */
+.header__nav-item--icon .header__nav-text {
+  display: none !important;
+}
+
+/* Ensure cart icon is same size as others */
+.header__nav-item--icon#cart-icon-bubble .svg-wrapper,
+.header__nav-item--icon#cart-icon-bubble .svg-wrapper svg {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+}
+
+/* Hide close icon in search - override base.css */
+.header--compact .header__search .header__icon-close,
+.header--compact .header__search .header__icon .header__icon-close,
+.header--compact .header__search details .header__icon-close,
+.header--compact .header__search details[open] .header__icon-close {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Ensure all navigation icons are uniform size - override any base styles */
+.header--compact .header__navigation .svg-wrapper,
+.header--compact .header__navigation .header__nav-item--icon .svg-wrapper,
+.header--compact .header__search .header__icon .svg-wrapper,
+.header--compact .header__nav-item--icon .svg-wrapper {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.header--compact .header__navigation .svg-wrapper svg,
+.header--compact .header__navigation .header__nav-item--icon .svg-wrapper svg,
+.header--compact .header__search .header__icon .svg-wrapper svg,
+.header--compact .header__nav-item--icon .svg-wrapper svg {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  object-fit: contain !important;
+}
+
+.header__nav-text {
+  display: none !important;
+}
+
+/* Ensure cart icon specifically matches other icon sizes */
+#cart-icon-bubble .svg-wrapper,
+#cart-icon-bubble .svg-wrapper svg,
+.header__nav-item--icon#cart-icon-bubble .svg-wrapper,
+.header__nav-item--icon#cart-icon-bubble .svg-wrapper svg,
+.header--compact #cart-icon-bubble .svg-wrapper,
+.header--compact #cart-icon-bubble .svg-wrapper svg {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+/* Force all icons in navigation to be exactly 22px */
+.header--compact .header__navigation .svg-wrapper svg,
+.header--compact .header__navigation .header__nav-item--icon .svg-wrapper svg,
+.header--compact .header__search .header__icon .svg-wrapper svg,
+.header--compact #cart-icon-bubble .svg-wrapper svg,
+.header--compact .header__nav-item--icon .svg-wrapper svg {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  box-sizing: border-box !important;
+}
+
+@media screen and (min-width: 990px) {
+  .header__nav-text {
+    display: none !important;
+  }
+  
+  .header__nav-item--icon {
+    padding: 0.6rem 1rem !important;
+    min-width: auto !important;
+  }
+  
+  /* Maintain icon size on desktop */
+  .header--compact .header__navigation .svg-wrapper,
+  .header--compact .header__navigation .header__nav-item--icon .svg-wrapper,
+  .header--compact .header__search .header__icon .svg-wrapper {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+  }
+  
+  .header--compact .header__navigation .svg-wrapper svg,
+  .header--compact .header__navigation .header__nav-item--icon .svg-wrapper svg,
+  .header--compact .header__search .header__icon .svg-wrapper svg {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+  }
+}
+
+/* Search in Navigation */
+.header--compact .header__nav-list > li:last-child {
+  display: flex;
+  align-items: center;
+}
+
+.header--compact .header__search {
+  display: inline-flex;
+}
+
+.header--compact .header__search .header__icon {
+  padding: 0.5rem !important;
+  min-width: 44px !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+  margin: 0 !important;
+  color: rgba(var(--color-foreground), 0.75) !important;
+}
+
+.header--compact .header__search .header__icon:hover {
+  background-color: rgba(108, 169, 58, 0.08);
+  color: #6CA93A;
+  transform: translateY(-1px);
+}
+
+.header--compact .header__search .header__icon .svg-wrapper {
+  width: 22px !important;
+  height: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+.header--compact .header__search .header__icon .svg-wrapper svg {
+  width: 22px !important;
+  height: 22px !important;
+  min-width: 22px !important;
+  min-height: 22px !important;
+  max-width: 22px !important;
+  max-height: 22px !important;
+  display: block !important;
+}
+
+/* Ensure search icon summary structure is correct */
+.header--compact .header__search .header__icon summary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.header--compact .header__search .header__icon summary > span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+}
+
+@media screen and (min-width: 990px) {
+  .header--compact .header__search .header__icon {
+    padding: 0.6rem 1rem;
+    min-width: auto;
+  }
+}
+
+/* Cart Count Bubble in Navigation */
+.header--compact .header__nav-item--icon .cart-count-bubble {
+  position: absolute;
+  background-color: #6CA93A;
+  color: white;
+  height: 1.6rem;
+  width: 1.6rem;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  top: 0.2rem;
+  right: 0.2rem;
+  line-height: 1;
+  border: 2px solid #F7F6F1;
+}
+
+@media screen and (min-width: 990px) {
+  .header--compact .header__nav-item--icon .cart-count-bubble {
+    top: 0.3rem;
+    right: 0.3rem;
+  }
+}
+
+/* Hide old icons container */
+.header--compact .header__icons {
+  display: none !important;
+}
+
+/* Override base.css grid styles for compact header */
+.header--compact {
+  grid-template-areas: none !important;
+  grid-template-columns: none !important;
+}
+
+/* Ensure logo wrapper doesn't have grid constraints */
+.header--compact .header__heading-logo-wrapper {
+  display: inline-block !important;
+  width: auto !important;
+  max-width: 180px !important;
+}
+
+/* Remove any default link styles */
+.header--compact .header__nav-item:link,
+.header--compact .header__nav-item:visited,
+.header--compact .header__nav-item:active {
+  color: rgba(var(--color-foreground), 0.75) !important;
+  text-decoration: none !important;
+}
+
+/* Mobile Menu Toggle */
+@media screen and (max-width: 989px) {
+  .header--compact .header__navigation {
+    display: none;
+  }
+  
+  .header--compact header-drawer {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .header--compact header-drawer {
+    display: none;
+  }
+}
+
+/* Logo Animations */
+.header__heading-logo-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+.header__heading-logo--animated {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.3s ease;
+  animation: logoEntrance 0.8s ease-out;
+  will-change: transform;
+}
+
+@keyframes logoEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+  }
+  60% {
+    transform: scale(1.05) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.header__heading-link:hover .header__heading-logo--animated {
+  transform: scale(1.08) rotate(2deg);
+  filter: brightness(1.1);
+}
+
+.header__heading-link:active .header__heading-logo--animated {
+  transform: scale(1.05);
+}
+
+/* Brand Name Animation (if no logo) */
+.header__brand-name {
+  display: inline-block;
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header__heading-link:hover .header__brand-name {
+  transform: translateY(-2px);
+  color: #6CA93A;
+}
+
+/* Enhanced Icon Animations */
+.header__icon--enhanced {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: iconFadeIn 0.6s ease-out backwards;
+}
+
+.header__icon--enhanced:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.header__icon--enhanced:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.header__icon--enhanced:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes iconFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.header__icon--enhanced::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(108, 169, 58, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.header__icon--enhanced:hover::before {
+  width: 60px;
+  height: 60px;
+}
+
+.header__icon--enhanced:hover {
+  transform: translateY(-3px) scale(1.1);
+  color: #6CA93A;
+}
+
+.header__icon--enhanced:hover .icon,
+.header__icon--enhanced:hover .svg-wrapper {
+  transform: scale(1.15);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.header__icon--enhanced:active {
+  transform: translateY(-1px) scale(1.05);
+}
+
+/* Search Icon Specific */
+.header__search .header__icon--enhanced {
+  animation-delay: 0s;
+}
+
+/* Cart Icon with Pulse Animation */
+.header__icon--cart.header__icon--enhanced:hover .cart-count-bubble {
+  animation: cartPulse 0.6s ease-in-out;
+  transform: scale(1.2);
+}
+
+@keyframes cartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* Navigation Menu Enhancements */
+.header__menu-item {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* Compact Navbar Navigation Items */
+.header--compact .header__nav-item {
+  animation: navItemFadeIn 0.5s ease-out backwards;
+}
+
+.header--compact .header__nav-list > li:nth-child(1) .header__nav-item {
+  animation-delay: 0.1s;
+}
+
+.header--compact .header__nav-list > li:nth-child(2) .header__nav-item {
+  animation-delay: 0.15s;
+}
+
+.header--compact .header__nav-list > li:nth-child(3) .header__nav-item {
+  animation-delay: 0.2s;
+}
+
+.header--compact .header__nav-list > li:nth-child(4) .header__nav-item {
+  animation-delay: 0.25s;
+}
+
+.header--compact .header__nav-list > li:nth-child(5) .header__nav-item {
+  animation-delay: 0.3s;
+}
+
+.header--compact .header__nav-list > li:nth-child(6) .header__nav-item {
+  animation-delay: 0.35s;
+}
+
+.header--compact .header__nav-list > li:nth-child(7) .header__nav-item {
+  animation-delay: 0.4s;
+}
+
+@keyframes navItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header__menu-item::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6CA93A, #B8D89A);
+  transform: translateX(-50%);
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 1;
+}
+
+.header__menu-item:hover::before {
+  width: 80%;
+}
+
+.header__menu-item span {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.header__menu-item:hover span {
+  color: #6CA93A;
+  transform: translateX(3px);
+}
+
+.header__active-menu-item {
+  position: relative;
+}
+
+.header__active-menu-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #6CA93A, #B8D89A);
+  animation: underlineGrow 0.5s ease-out;
+}
+
+@keyframes underlineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Menu Item Stagger Animation */
+.header__inline-menu .list-menu--inline > li {
+  animation: menuItemFadeIn 0.6s ease-out backwards;
+}
+
+.header__inline-menu .list-menu--inline > li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.header__inline-menu .list-menu--inline > li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.header__inline-menu .list-menu--inline > li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.header__inline-menu .list-menu--inline > li:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.header__inline-menu .list-menu--inline > li:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+@keyframes menuItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth Transitions for Dropdown Menus */
+.header__submenu {
+  transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              visibility 0.4s ease;
+}
+
+details[open] > .header__submenu {
+  animation: dropdownSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header Icons Container Animation */
+.header__icons {
+  animation: iconsContainerFadeIn 0.8s ease-out;
+}
+
+@keyframes iconsContainerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Sticky Header Enhancements */
+.shopify-section-header-sticky.animate {
+  transition: top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease;
+}
+
+.shopify-section-header-sticky:not(.shopify-section-header-hidden) {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive Enhancements */
+@media screen and (max-width: 989px) {
+  .header-top-strip {
+    height: 3px;
+  }
+  
+  .header__icon--enhanced:hover {
+    transform: scale(1.05);
+  }
+  
+  .header__heading-link:hover .header__heading-logo--animated {
+    transform: scale(1.05);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .header__heading-logo--animated,
+  .header__icon--enhanced,
+  .header__menu-item,
+  .header__brand-name {
+    animation: none;
+    transition: none;
+  }
+  
+  .header__icon--enhanced:hover,
+  .header__heading-link:hover .header__heading-logo--animated {
+    transform: none;
+  }
+  
+  .header-top-strip {
+    animation: none;
+  }
+  
+  .header-top-strip::before {
+    animation: none;
+  }
+}
+
+/* Focus States for Accessibility */
+.header__icon--enhanced:focus-visible,
+.header__heading-link:focus-visible,
+.header__menu-item:focus-visible {
+  outline: 2px solid #6CA93A;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Subtle Background Pattern (Optional Enhancement) */
+.header-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(108, 169, 58, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(209, 228, 185, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.header {
+  position: relative;
+  z-index: 1;
+}
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Additional Polish - Subtle Glow on Hover */
+.header__icon--enhanced:hover .svg-wrapper svg {
+  filter: drop-shadow(0 2px 4px rgba(108, 169, 58, 0.3));
+  transition: filter 0.3s ease;
+}
+
+/* Logo Container Enhancement */
+.header__heading-logo-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108, 169, 58, 0.1) 0%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.header__heading-link:hover .header__heading-logo-wrapper::after {
+  transform: translate(-50%, -50%) scale(1);
+}

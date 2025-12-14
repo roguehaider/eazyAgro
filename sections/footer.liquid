@@ -1,0 +1,504 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+{{ 'footer-enhanced.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .footer {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<footer class="footer footer--enhanced color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  {%- liquid
+    assign has_social_icons = true
+    if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+      assign has_social_icons = false
+    endif
+  -%}
+  
+  <!-- Floating Decorative Elements -->
+  <div class="footer__floating-element"></div>
+  <div class="footer__floating-element"></div>
+  <div class="footer__floating-element"></div>
+  
+  <div class="footer__content-top page-width">
+    <!-- Column 1: Logo & Social Links -->
+    <div class="footer__column-brand footer__column">
+      <div class="footer__logo">
+        <a href="{{ routes.root_url }}" class="footer__logo-link">
+          {%- if section.settings.footer_logo != blank -%}
+            {%- assign footer_logo = section.settings.footer_logo -%}
+            {%- assign logo_alt = footer_logo.alt | default: shop.name | escape -%}
+            {%- assign logo_height = section.settings.footer_logo_width | divided_by: footer_logo.aspect_ratio -%}
+            {{
+              footer_logo
+              | image_url: width: 200
+              | image_tag:
+                class: 'footer__logo-image',
+                height: logo_height,
+                width: section.settings.footer_logo_width,
+                alt: logo_alt
+            }}
+          {%- elsif settings.logo != blank -%}
+            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+            {{
+              settings.logo
+              | image_url: width: 200
+              | image_tag:
+                class: 'footer__logo-image',
+                height: logo_height,
+                width: settings.logo_width,
+                alt: logo_alt
+            }}
+          {%- else -%}
+            <h2 class="footer__logo-text">{{ shop.name }}</h2>
+          {%- endif -%}
+        </a>
+        {%- if settings.brand_description != blank -%}
+          <p class="footer__tagline">{{ settings.brand_description }}</p>
+        {%- endif -%}
+      </div>
+      
+      <div class="footer__social">
+        <div class="footer__social-item">
+          <a href="https://www.instagram.com/eazy.agro?igsh=MTVmdjF0Nzg4djRwNw==" class="footer__social-link" target="_blank" rel="noopener" aria-label="Instagram">
+            <div class="footer__social-icon-wrapper">
+              {{ 'icon-instagram.svg' | inline_asset_content }}
+            </div>
+            <span class="footer__social-label">Instagram</span>
+          </a>
+        </div>
+        <div class="footer__social-item">
+          <a href="https://www.facebook.com/share/1BmvRyETST/?mibextid=wwXIfr" class="footer__social-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <div class="footer__social-icon-wrapper">
+              {{ 'icon-facebook.svg' | inline_asset_content }}
+            </div>
+            <span class="footer__social-label">Facebook</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Column 2: Navigation Links -->
+    <div class="footer__column-nav footer__column">
+      <h2 class="footer__nav-heading">Company</h2>
+      <ul class="footer__nav-list">
+        {%- if section.settings.menu != blank -%}
+          {%- for link in section.settings.menu.links -%}
+            <li class="footer__nav-item">
+              <a href="{{ link.url }}" class="footer__nav-link{% if link.active %} footer__nav-link--active{% endif %}">
+                {{ link.title | escape }}
+              </a>
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          <li class="footer__nav-item">
+            <a href="{{ routes.root_url }}" class="footer__nav-link{% if request.page_type == 'index' %} footer__nav-link--active{% endif %}">Home</a>
+          </li>
+          <li class="footer__nav-item">
+            <a href="{{ routes.collections_url }}" class="footer__nav-link">Catalog</a>
+          </li>
+          <li class="footer__nav-item">
+            <a href="{{ routes.root_url }}/pages/contact" class="footer__nav-link">Contact</a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
+
+    <!-- Column 3: Contact Information -->
+    <div class="footer__column-contact footer__column">
+      <h2 class="footer__contact-heading">Contact Information</h2>
+      <ul class="footer__contact-list">
+        <!-- Email 1: Sales -->
+        <li class="footer__contact-item">
+          <div class="footer__contact-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" fill="none"/>
+              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="footer__contact-content">
+            <span class="footer__contact-label">E-mail</span>
+            <a href="mailto:sales@eazyagro.com" class="footer__contact-value">sales@eazyagro.com</a>
+          </div>
+        </li>
+        <!-- Email 2: Info -->
+        <li class="footer__contact-item">
+          <div class="footer__contact-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="2" fill="none"/>
+              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="footer__contact-content">
+            <span class="footer__contact-label">E-mail</span>
+            <a href="mailto:Info@eazyagro.com" class="footer__contact-value">Info@eazyagro.com</a>
+          </div>
+        </li>
+        <!-- WhatsApp 1 -->
+        <li class="footer__contact-item">
+          <div class="footer__contact-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="footer__contact-content">
+            <span class="footer__contact-label">WhatsApp</span>
+            <a href="https://wa.me/61411667671" class="footer__contact-value" target="_blank" rel="noopener">+61 411 667 671</a>
+          </div>
+        </li>
+        <!-- WhatsApp 2 -->
+        <li class="footer__contact-item">
+          <div class="footer__contact-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="footer__contact-content">
+            <span class="footer__contact-label">WhatsApp</span>
+            <a href="https://wa.me/61385189615" class="footer__contact-value" target="_blank" rel="noopener">+61 385 189 615</a>
+          </div>
+        </li>
+        <!-- Google Location -->
+        <li class="footer__contact-item">
+          <div class="footer__contact-icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="currentColor" stroke-width="2" fill="none"/>
+              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <div class="footer__contact-content">
+            <span class="footer__contact-label">Location</span>
+            <a href="https://maps.app.goo.gl/C7wcMtnEUCNDtgJ69" class="footer__contact-value" target="_blank" rel="noopener">View on Google Maps</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__content-bottom">
+    <div class="footer__bottom-wrapper page-width">
+      <div class="footer__copyright">
+        <small class="copyright__content">
+          &copy; {{ 'now' | date: '%Y' }}, <a href="{{ routes.root_url }}">{{ shop.name }}</a>. All rights reserved.
+        </small>
+      </div>
+      <ul class="footer__legal-links">
+        {%- for policy in shop.policies -%}
+          {%- if policy != blank -%}
+            <li>
+              <a href="{{ policy.url }}" class="footer__legal-link">{{ policy.title | escape }}</a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Scroll to Top Button -->
+  <button class="footer__scroll-top" id="scrollToTop" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 15l-6-6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+  </button>
+</footer>
+
+<script>
+  // Scroll to Top Button Functionality
+  (function() {
+    const scrollButton = document.getElementById('scrollToTop');
+    if (!scrollButton) return;
+    
+    function toggleScrollButton() {
+      if (window.pageYOffset > 300) {
+        scrollButton.classList.add('visible');
+      } else {
+        scrollButton.classList.remove('visible');
+      }
+    }
+    
+    window.addEventListener('scroll', toggleScrollButton);
+    toggleScrollButton();
+    
+    scrollButton.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.link_list.settings.heading.default",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label"
+        }
+      ]
+    },
+    {
+      "type": "brand_information",
+      "name": "t:sections.footer.blocks.brand_information.name",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.footer.blocks.brand_information.settings.paragraph.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": true,
+          "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
+          "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.text.settings.heading.default",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "t:sections.footer.blocks.text.settings.subtext.default",
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Width",
+          "default": 100
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Alignment",
+          "options": [
+            {
+              "value": "",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Footer Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer Logo",
+      "info": "Upload a different logo for the footer. If not set, the header logo will be used."
+    },
+    {
+      "type": "range",
+      "id": "footer_logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Footer Logo Width",
+      "default": 180
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu",
+      "info": "Select the menu to display in the footer navigation column"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__1.content",
+      "info": "t:sections.footer.settings.header__1.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "t:sections.footer.settings.newsletter_heading.default",
+      "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__9.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_follow_on_shop.label",
+      "info": "t:sections.footer.settings.enable_follow_on_shop.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "t:sections.footer.settings.show_social.label",
+      "info": "t:sections.footer.settings.show_social.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_country_selector.label",
+      "info": "t:sections.footer.settings.enable_country_selector.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_language_selector.label",
+      "info": "t:sections.footer.settings.enable_language_selector.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": true,
+      "label": "t:sections.footer.settings.show_policy.label",
+      "info": "t:sections.footer.settings.show_policy.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.footer.settings.margin_top.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "text"
+      }
+    ]
+  }
+}
+{% endschema %}
