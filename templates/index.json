@@ -1,121 +1,309 @@
-{
-    "sections": {
-      "image_banner": {
-        "type": "image-banner",
-        "blocks": {
-          "heading": {
-            "type": "heading",
-            "settings": {
-              "heading": "EazyAgro Delivers!",
-              "heading_size": "h1"
-            }
-          },
-          "text_ALBkpH": {
-            "type": "text",
-            "settings": {
-              "text": "<strong>Best Quality Products</strong>",
-              "text_style": "caption-with-letter-spacing"
-            }
-          },
-          "button": {
-            "type": "buttons",
-            "settings": {
-              "button_label_1": "Shop Now",
-              "button_link_1": "shopify://collections/all",
-              "button_style_secondary_1": false,
-              "button_label_2": "",
-              "button_link_2": "",
-              "button_style_secondary_2": false
-            }
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+  "sections": {
+    "image_banner": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "EazyAgro Delivers!",
+            "heading_size": "h1"
           }
         },
-        "block_order": [
-          "heading",
-          "text_ALBkpH",
-          "button"
-        ],
-        "settings": {
-          "enable_carousel": true,
-          "auto_rotate": true,
-          "change_slides_speed": 5,
-          "image": "shopify://shop_images/IMG_4818.png",
-          "image_overlay_opacity": 30,
-          "image_height": "large",
-          "image_behavior": "none",
-          "desktop_content_position": "bottom-center",
-          "desktop_content_alignment": "center",
-          "show_text_box": false,
-          "color_scheme": "scheme-3",
-          "stack_images_on_mobile": false,
-          "mobile_content_alignment": "center",
-          "show_text_below": false
+        "text_ALBkpH": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>Best Quality Products</strong>",
+            "text_style": "caption-with-letter-spacing"
+          }
+        },
+        "button": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Shop Now",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
         }
       },
-      "featured_collection": {
-        "type": "featured-collection",
+      "block_order": [
+        "heading",
+        "text_ALBkpH",
+        "button"
+      ],
+      "settings": {
+        "enable_carousel": true,
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image": "shopify://shop_images/IMG_4818.png",
+        "image_overlay_opacity": 30,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "bottom-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": false,
+        "color_scheme": "scheme-3",
+        "stack_images_on_mobile": false,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "featured_solution": {
+      "type": "featured-solution",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Greenhouse",
+            "feature_description": "Snap on poly film for warmth"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Shade House",
+            "feature_description": "Throw on shade cloth for cool protection"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Orchard/Net Shelter",
+            "feature_description": "Secure bird netting in minutes"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Plus storage, coops, nurseries... and more.",
+            "feature_description": ""
+          }
+        },
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/25x50insectnet2.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "image_1"
+      ],
+      "settings": {
+        "heading": "One Frame Does It All",
+        "heading_size": "h1",
+        "tagline": "No compromises. No clutter. Just one unshakable frame for every season, crop, and challenge.",
+        "cta_text": "Grow confidently.",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "featured_showcase_KjiFy9": {
+      "type": "featured-showcase",
+      "blocks": {
+        "feature_GyQHtK": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_text": "☀️",
+            "title": "Australian Climate-Adapted",
+            "description": "Products engineered for harsh sun, wind, and hail. Built to last in local conditions."
+          }
+        },
+        "feature_Fn9iwk": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_text": "🌱",
+            "title": "Commercial & Backyard Solutions",
+            "description": "From hobby gardens to large-scale farms. Find the right fit for your needs."
+          }
+        },
+        "feature_UARznH": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_text": "💬",
+            "title": "Expert Support",
+            "description": "Get 1-on-1 advice from our polytunnel specialists."
+          }
+        },
+        "feature_YxkdJg": {
+          "type": "feature",
+          "settings": {
+            "icon_svg": "",
+            "icon_text": "🤝",
+            "title": "Trusted by Australian Growers",
+            "description": "300+ farms, nurseries, and gardeners rely on our solutions."
+          }
+        },
+        "image_iX7U8y": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4818.png"
+          }
+        }
+      },
+      "block_order": [
+        "feature_GyQHtK",
+        "feature_Fn9iwk",
+        "feature_UARznH",
+        "feature_YxkdJg",
+        "image_iX7U8y"
+      ],
+      "name": "Features Showcase",
+      "settings": {
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Our polytunnel has withstood wild weather and continues to perform excellently.",
+            "author": "Athalie & Ron Dartnell"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Very happy with our 6mx18m U-design polytunnel. It's durable and well-built.",
+            "author": "Alexis Susser"
+          }
+        },
+        "testimonial_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "text": "Great Service, great product, and reasonably priced. The team put in great effort during erection.",
+            "author": "Kerry Karamaroudis"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_1",
+        "testimonial_2",
+        "testimonial_3"
+      ],
+      "settings": {
+        "heading": "Testimonials",
+        "heading_size": "h1",
+        "button_label": "Google Reviews",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+      },
+      "cta_contact": {
+        "type": "cta-contact",
         "settings": {
-          "collection": "all",
-          "products_to_show": 8,
-          "title": "Featured products",
-          "heading_size": "h2",
-          "description": "",
-          "show_description": false,
-          "description_style": "body",
-          "columns_desktop": 4,
-          "enable_desktop_slider": false,
-          "full_width": false,
-          "show_view_all": true,
-          "view_all_style": "solid",
+          "heading": "Still Unsure?",
+          "heading_size": "h1",
+          "text": "Book an appointment with one of our team members. We are here to assist you every step of the way.",
+          "button_label": "Contact Us",
+          "button_link": "/pages/contact",
           "color_scheme": "scheme-1",
-          "image_ratio": "adapt",
-          "image_shape": "default",
-          "show_secondary_image": true,
-          "show_vendor": true,
-          "show_rating": false,
-          "quick_add": "standard",
-          "columns_mobile": "2",
-          "swipe_on_mobile": false,
-          "padding_top": 44,
-          "padding_bottom": 36
+          "padding_top": 60,
+          "padding_bottom": 60
         }
       },
       "newsletter": {
         "type": "newsletter",
-        "blocks": {
-          "heading": {
-            "type": "heading",
-            "settings": {
-              "heading": "Stay Updated with EazyAgro",
-              "heading_size": "h1"
-            }
-          },
-          "paragraph": {
-            "type": "paragraph",
-            "settings": {
-              "text": "<p>Subscribe to our newsletter and get the latest updates on new products, special offers, and agricultural tips delivered straight to your inbox.</p>"
-            }
-          },
-          "email_form": {
-            "type": "email_form"
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Stay Updated with EazyAgro",
+            "heading_size": "h1"
           }
         },
-        "block_order": [
-          "heading",
-          "paragraph",
-          "email_form"
-        ],
-        "settings": {
-          "color_scheme": "scheme-2",
-          "full_width": true,
-          "padding_top": 60,
-          "padding_bottom": 60
+        "paragraph": {
+          "type": "paragraph",
+          "settings": {
+            "text": "<p>Subscribe to our newsletter and get the latest updates on new products, special offers, and agricultural tips delivered straight to your inbox.</p>"
+          }
+        },
+        "email_form": {
+          "type": "email_form",
+          "settings": {}
         }
+      },
+      "block_order": [
+        "heading",
+        "paragraph",
+        "email_form"
+      ],
+      "settings": {
+        "color_scheme": "scheme-2",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60
       }
-    },
-    "order": [
-      "image_banner",
-      "featured_collection",
-      "newsletter"
-    ]
-  }
-  
+    }
+  },
+  "order": [
+    "image_banner",
+    "featured_collection",
+    "featured_solution",
+    "featured_showcase_KjiFy9",
+    "testimonials",
+    "cta_contact",
+    "newsletter"
+  ]
+}

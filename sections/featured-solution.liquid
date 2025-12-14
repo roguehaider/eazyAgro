@@ -1,0 +1,483 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .featured-solution {
+    background-color: #F7F6F1;
+  }
+
+  .featured-solution__content {
+    color: rgba(var(--color-foreground), 0.85);
+  }
+
+  .featured-solution__heading {
+    color: #6CA93A;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+
+  .featured-solution__feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+  }
+
+  .featured-solution__feature-item {
+    padding: 0.8rem 0;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 2.5rem;
+  }
+
+  .featured-solution__feature-item::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #6CA93A;
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+
+  .featured-solution__feature-title {
+    font-weight: 600;
+    color: #6CA93A;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .featured-solution__feature-description {
+    color: rgba(var(--color-foreground), 0.75);
+    font-size: 1.4rem;
+  }
+
+  .featured-solution__tagline {
+    font-size: 1.6rem;
+    font-style: italic;
+    color: rgba(var(--color-foreground), 0.7);
+    margin: 2rem 0;
+  }
+
+  .featured-solution__cta {
+    margin-top: 2.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #6CA93A;
+  }
+
+  .featured-solution__image-carousel {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .featured-solution__image-carousel .slider-button {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .featured-solution__image-carousel .slider-button:hover {
+    background-color: #6CA93A;
+    color: white;
+  }
+
+  .featured-solution__image-carousel .slider-button svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .featured-solution__grid {
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .featured-solution__text-item {
+    padding: 2rem 0;
+  }
+
+  .featured-solution__image-item {
+    padding: 1rem 0;
+  }
+
+  .featured-solution__image-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .featured-solution__image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .featured-solution__grid {
+      gap: 2rem;
+    }
+
+    .featured-solution__heading {
+      font-size: 2.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .featured-solution__feature-item {
+      font-size: 1.4rem;
+      padding: 0.6rem 0;
+      padding-left: 2rem;
+    }
+
+    .featured-solution__tagline {
+      font-size: 1.4rem;
+      margin: 1.5rem 0;
+    }
+
+    .featured-solution__cta {
+      font-size: 1.6rem;
+      margin-top: 2rem;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .featured-solution__text-item {
+      padding-right: 2rem;
+    }
+
+    .featured-solution__image-item {
+      padding-left: 2rem;
+    }
+  }
+{%- endstyle -%}
+
+<div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }} featured-solution">
+  <div class="page-width">
+    <div class="featured-solution__grid grid grid--1-col grid--2-col-tablet grid--gapless">
+      <!-- Text Content -->
+      <div class="featured-solution__text-item grid__item">
+        <div class="featured-solution__content">
+          {%- if section.settings.heading != blank -%}
+            <h2 class="featured-solution__heading {{ section.settings.heading_size }}">
+              {{ section.settings.heading }}
+            </h2>
+          {%- endif -%}
+
+          {%- if section.blocks.size > 0 -%}
+            <ul class="featured-solution__feature-list">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'feature' -%}
+                  <li class="featured-solution__feature-item" {{ block.shopify_attributes }}>
+                    {%- if block.settings.feature_title != blank -%}
+                      <span class="featured-solution__feature-title">{{ block.settings.feature_title }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.feature_description != blank -%}
+                      <span class="featured-solution__feature-description">{{ block.settings.feature_description }}</span>
+                    {%- endif -%}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          {%- if section.settings.tagline != blank -%}
+            <p class="featured-solution__tagline">{{ section.settings.tagline }}</p>
+          {%- endif -%}
+
+          {%- if section.settings.cta_text != blank -%}
+            <p class="featured-solution__cta">{{ section.settings.cta_text }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Image Carousel -->
+      <div class="featured-solution__image-item grid__item">
+        {%- if section.blocks.size > 0 -%}
+          {%- assign image_blocks = section.blocks | where: 'type', 'image' -%}
+          {%- if image_blocks.size > 0 -%}
+            <slideshow-component
+              class="featured-solution__image-carousel"
+              role="region"
+              aria-roledescription="Image carousel"
+              aria-label="Product images"
+            >
+              {%- if image_blocks.size > 1 and section.settings.auto_rotate -%}
+                <div class="slideshow__controls slideshow__controls--top slider-buttons">
+                  <button
+                    type="button"
+                    class="slider-button slider-button--prev"
+                    name="previous"
+                    aria-label="Previous image"
+                    aria-controls="Slider-{{ section.id }}"
+                  >
+                    <span class="svg-wrapper">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  </button>
+                  <div class="slider-counter slider-counter--dots">
+                    <div class="slideshow__control-wrapper">
+                      {%- for block in image_blocks -%}
+                        <button
+                          class="slider-counter__link slider-counter__link--dots link"
+                          aria-label="Go to slide {{ forloop.index }}"
+                          aria-controls="Slider-{{ section.id }}"
+                        >
+                          <span class="dot"></span>
+                        </button>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    class="slider-button slider-button--next"
+                    name="next"
+                    aria-label="Next image"
+                    aria-controls="Slider-{{ section.id }}"
+                  >
+                    <span class="svg-wrapper">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  </button>
+                </div>
+              {%- endif -%}
+
+              <div
+                class="grid grid--1-col slider slider--everywhere"
+                id="Slider-{{ section.id }}"
+                aria-live="polite"
+                aria-atomic="true"
+                {% if section.settings.auto_rotate %}
+                  data-autoplay="true"
+                  data-speed="{{ section.settings.change_slides_speed }}"
+                {% endif %}
+              >
+                {%- for block in image_blocks -%}
+                  <div
+                    class="slideshow__slide slider__slide grid__item grid--1-col"
+                    id="Slide-{{ section.id }}-{{ forloop.index }}"
+                    {{ block.shopify_attributes }}
+                    role="group"
+                    aria-label="{{ forloop.index }} of {{ image_blocks.size }}"
+                    tabindex="-1"
+                  >
+                    <div class="featured-solution__image-wrapper">
+                      {%- if block.settings.image != blank -%}
+                        {%- assign widths = '165, 360, 535, 750, 1070, 1500' -%}
+                        {%- capture sizes -%}
+                          (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+                          (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+                        {%- endcapture -%}
+                        {{
+                          block.settings.image
+                          | image_url: width: 1500
+                          | image_tag: sizes: sizes, widths: widths, loading: 'lazy'
+                        }}
+                      {%- else -%}
+                        <div class="placeholder" style="padding-bottom: 66.67%; background-color: #D1E4B9;">
+                          <span class="visually-hidden">Image placeholder</span>
+                        </div>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </slideshow-component>
+          {%- else -%}
+            <!-- Placeholder if no images -->
+            <div class="featured-solution__image-carousel">
+              <div class="placeholder" style="padding-bottom: 66.67%; background-color: #D1E4B9; border-radius: 12px;">
+                <span class="visually-hidden">Image placeholder - add images in section settings</span>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- else -%}
+          <!-- Placeholder if no blocks -->
+          <div class="featured-solution__image-carousel">
+            <div class="placeholder" style="padding-bottom: 66.67%; background-color: #D1E4B9; border-radius: 12px;">
+              <span class="visually-hidden">Image placeholder - add images in section settings</span>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Solution",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "One Frame Does It All"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "No compromises. No clutter. Just one unshakable frame for every season, crop, and challenge."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Call to Action Text",
+      "default": "Grow confidently."
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto-rotate images",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 5
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_title",
+          "label": "Feature Title",
+          "default": "Greenhouse"
+        },
+        {
+          "type": "text",
+          "id": "feature_description",
+          "label": "Feature Description",
+          "default": "Snap on poly film for warmth"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Solution",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Greenhouse",
+            "feature_description": "Snap on poly film for warmth"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Shade House",
+            "feature_description": "Throw on shade cloth for cool protection"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature_title": "Orchard/Net Shelter",
+            "feature_description": "Secure bird netting in minutes"
+          }
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+

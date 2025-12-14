@@ -1,0 +1,127 @@
+{%- liquid
+  assign announcement_text = "Christmas Closure from 12 Dec to 12 Jan"
+  assign announcement_text_2 = "Orders received during this period may not be dispatched until we are back. Thank you for your understanding."
+  assign announcement_enabled = true
+  assign announcement_speed = 30
+-%}
+
+{%- if announcement_enabled and announcement_text != blank -%}
+<style>
+  .moving-announcement {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: linear-gradient(180deg, #2d5016 0%, #D1E4B9 100%);
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .moving-announcement__top-strip {
+    height: 4px;
+    background-color: #2d5016;
+    width: 100%;
+  }
+
+  .moving-announcement__content {
+    background-color: #D1E4B9;
+    padding: 1rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .moving-announcement__wrapper {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    width: fit-content;
+    animation: scroll-text {{ announcement_speed }}s linear infinite;
+  }
+
+  .moving-announcement__wrapper:hover {
+    animation-play-state: paused;
+  }
+
+  .moving-announcement__text {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: #2d5016;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0 2rem;
+  }
+
+  .moving-announcement__bullet {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #2d5016;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .moving-announcement__text-content {
+    display: inline-block;
+  }
+
+  @keyframes scroll-text {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .moving-announcement__text {
+      font-size: 1.2rem;
+      gap: 1rem;
+      padding: 0 1.5rem;
+    }
+  }
+
+  /* Add padding to body to account for fixed banner */
+  body:has(.moving-announcement) {
+    padding-top: 60px !important;
+  }
+
+  /* Adjust header position */
+  body:has(.moving-announcement) .section-header,
+  body:has(.moving-announcement) .header-wrapper {
+    top: 60px;
+  }
+
+  @media screen and (max-width: 749px) {
+    body:has(.moving-announcement) {
+      padding-top: 50px !important;
+    }
+    
+    body:has(.moving-announcement) .section-header,
+    body:has(.moving-announcement) .header-wrapper {
+      top: 50px;
+    }
+  }
+</style>
+
+<div class="moving-announcement" role="region" aria-label="Announcement">
+  <div class="moving-announcement__top-strip"></div>
+  <div class="moving-announcement__content">
+    <div class="moving-announcement__wrapper">
+      {%- for i in (1..10) -%}
+        <div class="moving-announcement__text">
+          <span class="moving-announcement__bullet"></span>
+          <span class="moving-announcement__text-content">{{ announcement_text }}</span>
+          <span class="moving-announcement__bullet"></span>
+          <span class="moving-announcement__text-content">{{ announcement_text_2 }}</span>
+          <span class="moving-announcement__bullet"></span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- endif -%}
+

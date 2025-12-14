@@ -1,0 +1,335 @@
+{%- if section.settings.enable != false -%}
+{%- style -%}
+  .moving-announcement {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: linear-gradient(180deg, #2d5016 0%, #D1E4B9 100%);
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .moving-announcement__top-strip {
+    height: 4px;
+    background-color: #2d5016;
+    width: 100%;
+  }
+
+  .moving-announcement__content {
+    background-color: #D1E4B9;
+    padding: 1rem 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    line-height: 1;
+  }
+
+  .moving-announcement__wrapper {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    width: fit-content;
+    animation: scroll-text {{ section.settings.speed | default: 60 }}s linear infinite;
+  }
+
+  .moving-announcement__wrapper:hover {
+    animation-play-state: paused;
+  }
+
+  .moving-announcement__text {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: #2d5016;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: 0 2rem;
+  }
+
+  .moving-announcement__bullet {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #2d5016;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .moving-announcement__text-content {
+    display: inline-block;
+  }
+
+  @keyframes scroll-text {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .moving-announcement__text {
+      font-size: 1.2rem;
+      gap: 1rem;
+      padding: 0 1.5rem;
+    }
+  }
+
+
+  /* Make the section wrapper take no space since content is fixed */
+  section:has(.moving-announcement),
+  .section:has(.moving-announcement),
+  section.moving-announcement-section {
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    line-height: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  /* Ensure the moving announcement div itself is positioned correctly */
+  .moving-announcement {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000; /* Higher than header to stay on top */
+  }
+
+  /* Ensure header group has lower z-index so moving announcement stays on top */
+  body:has(.moving-announcement) .shopify-section-group-header-group {
+    z-index: 9999;
+  }
+
+  /* Remove ALL spacing between moving announcement and utility bar */
+  body:has(.moving-announcement) .utility-bar {
+    margin: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+  }
+
+  /* Ensure section-header has no spacing but keep sticky positioning */
+  body:has(.moving-announcement) .section-header {
+    margin: 0 !important;
+    padding: 0 !important;
+    /* Don't override position - let it be sticky */
+  }
+
+  /* Calculate moving announcement height */
+  :root {
+    --moving-announcement-height: calc(4px + 2rem + 1.4rem);
+  }
+
+  /* Position header group to start exactly where moving announcement ends */
+  body:has(.moving-announcement) .shopify-section-group-header-group {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    position: relative;
+    top: var(--moving-announcement-height);
+    margin-top: calc(-1 * var(--moving-announcement-height)) !important;
+  }
+
+  /* Make announcement bar NOT sticky - it should scroll with page */
+  body:has(.moving-announcement) .utility-bar,
+  body:has(.moving-announcement) .announcement-bar-section,
+  body:has(.moving-announcement) section[class*="announcement-bar"] {
+    position: static !important;
+  }
+
+  /* Only make the header/navbar sticky, positioned below moving announcement */
+  body:has(.moving-announcement) .section-header.shopify-section-header-sticky,
+  body:has(.moving-announcement) .shopify-section-header-sticky {
+    position: sticky !important;
+    top: var(--moving-announcement-height) !important;
+  }
+
+  /* Add padding to body to account for fixed moving announcement only */
+  body:has(.moving-announcement) {
+    padding-top: var(--moving-announcement-height) !important;
+  }
+
+  /* Remove any margin from the section that contains moving announcement */
+  body:has(.moving-announcement) section[class*="moving-announcement"],
+  body:has(.moving-announcement) .section:has(.moving-announcement) {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+  }
+
+  /* Ensure utility bar sits flush with moving announcement */
+  body:has(.moving-announcement) .utility-bar__grid {
+    margin: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Remove any gap between utility bar and header, but allow padding for proper height */
+  body:has(.moving-announcement) .header-wrapper {
+    margin-top: 0 !important;
+    /* Keep padding-top from section settings for proper header height */
+  }
+
+  /* Increase header section padding to fit all content properly */
+  body:has(.moving-announcement) .header:not(.header--compact) {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  @media screen and (min-width: 990px) {
+    body:has(.moving-announcement) .header:not(.header--compact) {
+      padding-top: 2.5rem !important;
+      padding-bottom: 2.5rem !important;
+    }
+  }
+
+  /* Ensure announcement bar section is NOT sticky */
+  body:has(.moving-announcement) section:has(.utility-bar),
+  body:has(.moving-announcement) .announcement-bar-section {
+    position: static !important;
+  }
+
+  /* Ensure announcement bar section has no margin */
+  body:has(.moving-announcement) .announcement-bar-section,
+  body:has(.moving-announcement) section[class*="announcement-bar"] {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Fix any section spacing issues */
+  body:has(.moving-announcement) .shopify-section-group-header-group > section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Ensure the first section in header group (announcement-bar) has no top margin */
+  body:has(.moving-announcement) .shopify-section-group-header-group > section:first-of-type {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* Override section spacing rules for header group sections */
+  body:has(.moving-announcement) .shopify-section-group-header-group .section + .section {
+    margin-top: 0 !important;
+  }
+
+  /* Ensure no spacing between moving announcement section and next section */
+  body:has(.moving-announcement) .moving-announcement-section + section,
+  body:has(.moving-announcement) section:has(.moving-announcement) + section {
+    margin-top: 0 !important;
+  }
+
+  @media screen and (max-width: 749px) {
+    :root {
+      --moving-announcement-height: calc(4px + 2rem + 1.2rem);
+    }
+
+    .moving-announcement {
+      height: var(--moving-announcement-height);
+    }
+
+    section:has(.moving-announcement) {
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    body:has(.moving-announcement) {
+      padding-top: var(--moving-announcement-height) !important;
+    }
+    
+    body:has(.moving-announcement) .shopify-section-group-header-group {
+      top: var(--moving-announcement-height);
+      margin-top: calc(-1 * var(--moving-announcement-height)) !important;
+    }
+
+    /* Only navbar sticky, positioned below moving announcement */
+    body:has(.moving-announcement) .shopify-section-header-sticky,
+    body:has(.moving-announcement) .section-header.shopify-section-header-sticky {
+      top: var(--moving-announcement-height) !important;
+      position: sticky !important;
+    }
+
+    /* Increase header padding on mobile too */
+    body:has(.moving-announcement) .header:not(.header--compact) {
+      padding-top: 1.5rem !important;
+      padding-bottom: 1.5rem !important;
+    }
+  }
+{%- endstyle -%}
+
+  <div class="moving-announcement" role="region" aria-label="Announcement" {{ section.shopify_attributes }}>
+    <div class="moving-announcement__top-strip"></div>
+    <div class="moving-announcement__content">
+      <div class="moving-announcement__wrapper">
+        {%- assign text_1 = section.settings.text | default: "Christmas Closure from 12 Dec to 12 Jan" -%}
+        {%- assign text_2 = section.settings.text_2 | default: "Orders received during this period may not be dispatched until we are back. Thank you for your understanding." -%}
+        {%- for i in (1..10) -%}
+          <div class="moving-announcement__text">
+            <span class="moving-announcement__bullet"></span>
+            <span class="moving-announcement__text-content">{{ text_1 }}</span>
+            <span class="moving-announcement__bullet"></span>
+            <span class="moving-announcement__text-content">{{ text_2 }}</span>
+            <span class="moving-announcement__bullet"></span>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Moving Announcement",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable Moving Announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "Christmas Closure from 12 Dec to 12 Jan"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Second Line Text (Optional)",
+      "default": "Orders received during this period may not be dispatched until we are back. Thank you for your understanding."
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "Animation Speed",
+      "default": 60,
+      "info": "Lower values = faster scrolling"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Moving Announcement",
+      "settings": {
+        "enable": true,
+        "text": "Christmas Closure from 12 Dec to 12 Jan",
+        "text_2": "Orders received during this period may not be dispatched until we are back. Thank you for your understanding.",
+        "speed": 60
+      }
+    }
+  ]
+}
+{% endschema %}
