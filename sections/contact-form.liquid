@@ -1,4 +1,5 @@
 {{ 'section-contact-form.css' | asset_url | stylesheet_tag }}
+{{ 'contact-enhanced.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -14,8 +15,30 @@
   }
 {%- endstyle -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="contact page-width page-width--narrow section-{{ section.id }}-padding">
+<div class="color-{{ section.settings.color_scheme }} gradient contact-page-wrapper">
+  <!-- Floating Objects Container -->
+  <div class="contact__floating-elements">
+    <!-- Floating Leaves -->
+    <div class="contact__floating-leaf contact__floating-leaf--1"></div>
+    <div class="contact__floating-leaf contact__floating-leaf--2"></div>
+    <div class="contact__floating-leaf contact__floating-leaf--3"></div>
+    <div class="contact__floating-leaf contact__floating-leaf--4"></div>
+    <div class="contact__floating-leaf contact__floating-leaf--5"></div>
+
+    <!-- Floating Orbs -->
+    <div class="contact__floating-orb contact__floating-orb--1"></div>
+    <div class="contact__floating-orb contact__floating-orb--2"></div>
+    <div class="contact__floating-orb contact__floating-orb--3"></div>
+
+    <!-- Floating Dew Drops -->
+    <div class="contact__floating-dew contact__floating-dew--1"></div>
+    <div class="contact__floating-dew contact__floating-dew--2"></div>
+    <div class="contact__floating-dew contact__floating-dew--3"></div>
+    <div class="contact__floating-dew contact__floating-dew--4"></div>
+    <div class="contact__floating-dew contact__floating-dew--5"></div>
+  </div>
+
+  <div class="contact contact--enhanced page-width page-width--narrow section-{{ section.id }}-padding">
     {%- if section.settings.heading != blank -%}
       <h2 class="title title-wrapper--no-top-margin inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {{ section.settings.heading }}
@@ -132,6 +155,78 @@
         </button>
       </div>
     {%- endform -%}
+
+    <!-- Contact Info Section -->
+    {%- if section.settings.show_contact_info -%}
+      <div class="contact-info">
+        {%- if section.settings.address != blank -%}
+          <div class="contact-info__item">
+            <div class="contact-info__icon">📍</div>
+            <h3 class="contact-info__title">Address</h3>
+            <p class="contact-info__text">{{ section.settings.address }}</p>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.phone != blank or section.settings.phone2 != blank -%}
+          <div class="contact-info__item">
+            <div class="contact-info__icon">📞</div>
+            <h3 class="contact-info__title">Phone / WhatsApp</h3>
+            <p class="contact-info__text">
+              {%- if section.settings.phone != blank -%}
+                {%- assign phone_clean = section.settings.phone | replace: ' ', '' | replace: '+', '' | replace: '-', '' | replace: '(', '' | replace: ')', '' -%}
+                <a href="https://wa.me/{{ phone_clean }}" target="_blank" style="color: inherit; text-decoration: none; display: block; margin-bottom: 0.5rem;">
+                  {{ section.settings.phone }}
+                </a>
+              {%- endif -%}
+              {%- if section.settings.phone2 != blank -%}
+                {%- assign phone2_clean = section.settings.phone2 | replace: ' ', '' | replace: '+', '' | replace: '-', '' | replace: '(', '' | replace: ')', '' -%}
+                <a href="https://wa.me/{{ phone2_clean }}" target="_blank" style="color: inherit; text-decoration: none; display: block;">
+                  {{ section.settings.phone2 }}
+                </a>
+              {%- endif -%}
+            </p>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.email != blank or section.settings.email2 != blank -%}
+          <div class="contact-info__item">
+            <div class="contact-info__icon">✉️</div>
+            <h3 class="contact-info__title">Email</h3>
+            <p class="contact-info__text">
+              {%- if section.settings.email != blank -%}
+                <a href="mailto:{{ section.settings.email }}" style="color: inherit; text-decoration: none; display: block; margin-bottom: 0.5rem;">
+                  {{ section.settings.email }}
+                </a>
+              {%- endif -%}
+              {%- if section.settings.email2 != blank -%}
+                <a href="mailto:{{ section.settings.email2 }}" style="color: inherit; text-decoration: none; display: block;">
+                  {{ section.settings.email2 }}
+                </a>
+              {%- endif -%}
+            </p>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <!-- Map Section -->
+    {%- if section.settings.show_map and section.settings.map_embed_code != blank -%}
+      <div class="contact-map-container">
+        <div class="contact-map-overlay"></div>
+        {{ section.settings.map_embed_code }}
+      </div>
+    {%- elsif section.settings.show_map and section.settings.map_address != blank -%}
+      <div class="contact-map-container">
+        <div class="contact-map-overlay"></div>
+        <iframe
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBeXvmc4XdzuvbkenMu7HRNNYJGWWO-a9g&q={{ section.settings.map_address | url_encode }}"
+          width="100%"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    {%- endif -%}
   </div>
 </div>
 
@@ -207,6 +302,69 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Contact Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_contact_info",
+      "label": "Show contact information",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Store Address",
+      "default": "82 Leeds Rd, Mount Waverley VIC 3149, Australia"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone / WhatsApp Number 1",
+      "default": "+61 411 667 671"
+    },
+    {
+      "type": "text",
+      "id": "phone2",
+      "label": "Phone / WhatsApp Number 2",
+      "default": "+61 385 189 615"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email Address 1",
+      "default": "sales@eazyagro.com"
+    },
+    {
+      "type": "text",
+      "id": "email2",
+      "label": "Email Address 2",
+      "default": "Info@eazyagro.com"
+    },
+    {
+      "type": "header",
+      "content": "Map Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_map",
+      "label": "Show map",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "map_address",
+      "label": "Store Address for Map",
+      "info": "Enter the full address for Google Maps",
+      "default": "82 Leeds Rd, Mount Waverley VIC 3149, Australia"
+    },
+    {
+      "type": "html",
+      "id": "map_embed_code",
+      "label": "Map Embed Code (Optional)",
+      "info": "If you have a custom map embed code, paste it here. Otherwise, the address above will be used."
     }
   ],
   "presets": [

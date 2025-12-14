@@ -1,6 +1,8 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'featured-products-enhanced.css' | asset_url | stylesheet_tag }}
+{{ 'collection-enhanced.css' | asset_url | stylesheet_tag }}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -100,6 +102,7 @@
     <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
       <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'collection-filters-accordion.js' | asset_url }}" defer="defer"></script>
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby="verticalTitle"
@@ -140,8 +143,23 @@
           </div>
         {%- else -%}
           <div
-            class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+            class="collection collection--enhanced{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
           >
+            <!-- Floating Objects -->
+            <div class="collection__floating-leaves">
+              <div class="collection__floating-leaf collection__floating-leaf--1"></div>
+              <div class="collection__floating-leaf collection__floating-leaf--2"></div>
+              <div class="collection__floating-leaf collection__floating-leaf--3"></div>
+              <div class="collection__floating-leaf collection__floating-leaf--4"></div>
+            </div>
+            <div class="collection__floating-orb collection__floating-orb--1"></div>
+            <div class="collection__floating-orb collection__floating-orb--2"></div>
+            <div class="collection__floating-orb collection__floating-orb--3"></div>
+            <div class="collection__floating-dew collection__floating-dew--1"></div>
+            <div class="collection__floating-dew collection__floating-dew--2"></div>
+            <div class="collection__floating-dew collection__floating-dew--3"></div>
+            <div class="collection__floating-dew collection__floating-dew--4"></div>
+            
             <div class="loading-overlay gradient"></div>
             <ul
               id="product-grid"

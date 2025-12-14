@@ -1,0 +1,703 @@
+/* Contact Page Enhanced Styles */
+.contact-page-wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(247, 246, 241, 0.5) 0%, rgba(255, 255, 255, 1) 100%);
+  padding: 2rem 0;
+}
+
+/* Set contact page width to 1100px to match catalog page */
+.contact-page-wrapper .contact.contact--enhanced,
+.contact-page-wrapper .page-width--narrow,
+.contact-page-wrapper .contact,
+.contact-page-wrapper ~ .page-width--narrow,
+.contact-page-wrapper .page-width--narrow {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* Also set width for main-page section on contact page (heading container) - Reduce side margins */
+body.template-page .main-page .page-width--narrow,
+body.template-page .main-page .page-width.page-width--narrow,
+body.template-page .section-main-page .page-width--narrow,
+body.template-page .section-main-page .page-width.page-width--narrow,
+body.template-page .page-width--narrow,
+body.template-page .section .page-width--narrow,
+body.template-page .section .page-width.page-width--narrow,
+.section-main-page .page-width--narrow,
+.section-main-page .page-width.page-width--narrow {
+  max-width: 1100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Override base.css padding that adds 9rem on sides at 750px+ */
+@media screen and (min-width: 750px) {
+  body.template-page .main-page .page-width--narrow,
+  body.template-page .main-page .page-width.page-width--narrow,
+  body.template-page .section-main-page .page-width--narrow,
+  body.template-page .section-main-page .page-width.page-width--narrow,
+  body.template-page .page-width--narrow,
+  body.template-page .section .page-width--narrow,
+  body.template-page .section .page-width.page-width--narrow,
+  .section-main-page .page-width--narrow,
+  .section-main-page .page-width.page-width--narrow {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+/* Override base.css media query for contact page - reduce side margins */
+/* Base.css adds 9rem (144px) padding at 750px+ - we override to 1.5rem */
+@media screen and (min-width: 750px) {
+  body.template-page .main-page .page-width--narrow,
+  body.template-page .main-page .page-width.page-width--narrow,
+  body.template-page .section-main-page .page-width--narrow,
+  body.template-page .section-main-page .page-width.page-width--narrow,
+  body.template-page .page-width--narrow,
+  body.template-page .section .page-width--narrow,
+  body.template-page .section .page-width.page-width--narrow,
+  .section-main-page .page-width--narrow,
+  .section-main-page .page-width.page-width--narrow {
+    max-width: 1100px !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Override base.css at 990px+ where it sets max-width to 72.6rem and padding to 0 */
+@media screen and (min-width: 990px) {
+  body.template-page .main-page .page-width--narrow,
+  body.template-page .main-page .page-width.page-width--narrow,
+  body.template-page .section-main-page .page-width--narrow,
+  body.template-page .section-main-page .page-width.page-width--narrow,
+  body.template-page .page-width--narrow,
+  body.template-page .section .page-width--narrow,
+  body.template-page .section .page-width.page-width--narrow,
+  .section-main-page .page-width--narrow,
+  .section-main-page .page-width.page-width--narrow {
+    max-width: 1100px !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Style the page title from main-page section */
+.page-width--narrow .main-page-title,
+.page-width--narrow .page-title,
+.main-page-title.page-title,
+.main-page-title.h0 {
+  position: relative !important;
+  display: inline-block !important;
+  font-size: 4.8rem !important;
+  font-weight: 700 !important;
+  color: #121212 !important;
+  margin-bottom: 3rem !important;
+  animation: fadeInUp 0.8s ease-out !important;
+}
+
+.page-width--narrow .main-page-title::after,
+.page-width--narrow .page-title::after,
+.main-page-title.page-title::after,
+.main-page-title.h0::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -10px !important;
+  left: 0 !important;
+  width: 60px !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #6CA93A 0%, #B8D89A 100%) !important;
+  border-radius: 2px !important;
+  animation: underlineGrow 0.8s ease-out 0.3s both !important;
+}
+
+/* Main Page Title Styling for Contact Page */
+.contact-page-wrapper ~ .main-page-title,
+.contact-page-wrapper .main-page-title,
+.main-page-title {
+  position: relative !important;
+  display: inline-block !important;
+  font-size: 4.8rem !important;
+  font-weight: 700 !important;
+  color: #121212 !important;
+  margin-bottom: 3rem !important;
+  animation: fadeInUp 0.8s ease-out !important;
+  z-index: 1;
+}
+
+.contact-page-wrapper ~ .main-page-title::after,
+.contact-page-wrapper .main-page-title::after,
+.main-page-title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -10px !important;
+  left: 0 !important;
+  width: 60px !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #6CA93A 0%, #B8D89A 100%) !important;
+  border-radius: 2px !important;
+  animation: underlineGrow 0.8s ease-out 0.3s both !important;
+}
+
+/* Contact Form Title Styling - Match Collection Page Style */
+.contact--enhanced .title,
+.contact--enhanced h2.title,
+.contact--enhanced .title-wrapper--no-top-margin .title,
+.contact.contact--enhanced .title,
+.contact.contact--enhanced h2.title {
+  position: relative !important;
+  display: inline-block !important;
+  margin-bottom: 3rem !important;
+  animation: fadeInUp 0.8s ease-out !important;
+  color: #121212 !important;
+  font-weight: 700 !important;
+  font-size: 4.8rem !important;
+  text-align: left !important;
+}
+
+.contact--enhanced .title::after,
+.contact--enhanced h2.title::after,
+.contact--enhanced .title-wrapper--no-top-margin .title::after,
+.contact.contact--enhanced .title::after,
+.contact.contact--enhanced h2.title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -10px !important;
+  left: 0 !important;
+  width: 60px !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #6CA93A 0%, #B8D89A 100%) !important;
+  border-radius: 2px !important;
+  animation: underlineGrow 0.8s ease-out 0.3s both !important;
+}
+
+@keyframes underlineGrow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating Objects Container */
+.contact__floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Floating Leaves */
+.contact__floating-leaf {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  opacity: 0.4;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236CA93A'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  animation: floatLeaf 20s infinite ease-in-out;
+}
+
+.contact__floating-leaf--1 { left: 10%; top: 15%; animation-delay: 0s; animation-duration: 18s; }
+.contact__floating-leaf--2 { left: 85%; top: 25%; animation-delay: 3s; animation-duration: 22s; width: 30px; height: 30px; opacity: 0.3; }
+.contact__floating-leaf--3 { left: 15%; top: 60%; animation-delay: 6s; animation-duration: 25s; width: 35px; height: 35px; opacity: 0.35; }
+.contact__floating-leaf--4 { left: 80%; top: 70%; animation-delay: 9s; animation-duration: 20s; width: 25px; height: 25px; opacity: 0.25; }
+.contact__floating-leaf--5 { left: 50%; top: 40%; animation-delay: 12s; animation-duration: 24s; width: 28px; height: 28px; opacity: 0.3; }
+
+@keyframes floatLeaf {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(30px, -40px) rotate(5deg); }
+  50% { transform: translate(-20px, -60px) rotate(-5deg); }
+  75% { transform: translate(40px, -30px) rotate(3deg); }
+}
+
+/* Floating Orbs */
+.contact__floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 216, 154, 0.2) 0%, transparent 70%);
+  animation: floatOrb 15s infinite ease-in-out;
+  filter: blur(15px);
+}
+
+.contact__floating-orb--1 { width: 120px; height: 120px; top: 10%; left: 70%; animation-delay: 0s; }
+.contact__floating-orb--2 { width: 80px; height: 80px; top: 50%; left: 10%; animation-delay: 5s; }
+.contact__floating-orb--3 { width: 100px; height: 100px; bottom: 15%; right: 15%; animation-delay: 10s; }
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+  50% { transform: translateY(-25px) scale(1.1); opacity: 0.9; }
+}
+
+/* Floating Dew Drops */
+.contact__floating-dew {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(209, 228, 185, 0.6) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: floatDew 15s infinite ease-in-out;
+}
+
+.contact__floating-dew--1 { left: 20%; top: 30%; animation-delay: 0s; }
+.contact__floating-dew--2 { left: 90%; top: 50%; animation-delay: 2s; width: 6px; height: 6px; }
+.contact__floating-dew--3 { left: 50%; top: 75%; animation-delay: 4s; width: 10px; height: 10px; }
+.contact__floating-dew--4 { left: 70%; top: 20%; animation-delay: 6s; width: 7px; height: 7px; }
+.contact__floating-dew--5 { left: 30%; top: 55%; animation-delay: 8s; width: 9px; height: 9px; }
+
+@keyframes floatDew {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  50% { transform: translate(20px, -30px) scale(1.2); opacity: 1; }
+}
+
+/* Contact Container Enhancements */
+.contact.contact--enhanced {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 4rem 3rem !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1),
+              0 8px 24px rgba(108, 169, 58, 0.15);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.8s ease-out;
+  margin: 3rem auto;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Title Enhancements - Match Collection Page Style */
+.contact--enhanced .title,
+.contact--enhanced h2.title,
+.contact--enhanced .title-wrapper--no-top-margin .title,
+.contact.contact--enhanced .title {
+  position: relative !important;
+  display: inline-block !important;
+  margin-bottom: 3rem !important;
+  animation: fadeInUp 0.8s ease-out !important;
+  color: #121212 !important;
+  font-weight: 700 !important;
+  font-size: 4.8rem !important;
+  text-align: left !important;
+}
+
+.contact--enhanced .title::after,
+.contact--enhanced h2.title::after,
+.contact--enhanced .title-wrapper--no-top-margin .title::after,
+.contact.contact--enhanced .title::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -10px !important;
+  left: 0 !important;
+  width: 60px !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, #6CA93A 0%, #B8D89A 100%) !important;
+  border-radius: 2px !important;
+  animation: underlineGrow 0.8s ease-out 0.3s both !important;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Field Enhancements */
+.contact--enhanced .field {
+  position: relative;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out both;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove all borders from field wrapper pseudo-elements */
+.contact--enhanced .field:before,
+.contact--enhanced .field:after {
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.contact--enhanced .field:nth-child(1) { animation-delay: 0.1s; }
+.contact--enhanced .field:nth-child(2) { animation-delay: 0.2s; }
+.contact--enhanced .field:nth-child(3) { animation-delay: 0.3s; }
+.contact--enhanced .field:nth-child(4) { animation-delay: 0.4s; }
+
+.contact--enhanced .field__input {
+  width: 100%;
+  padding: 1.5rem 2rem;
+  border: 2px solid rgba(108, 169, 58, 0.2) !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 1.6rem;
+  color: #121212;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  outline: none !important;
+  border-color: rgba(108, 169, 58, 0.2) !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Remove any default browser borders */
+.contact--enhanced .field__input,
+.contact--enhanced .field__input:active,
+.contact--enhanced .field__input:hover,
+.contact--enhanced .field__input:visited {
+  border: 2px solid rgba(108, 169, 58, 0.2) !important;
+  border-color: rgba(108, 169, 58, 0.2) !important;
+  outline: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Remove black borders from field wrapper */
+.contact--enhanced .field:before {
+  border: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.contact--enhanced .field {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.contact--enhanced .field__input:focus {
+  outline: none !important;
+  border: 2px solid #6CA93A !important;
+  border-color: #6CA93A !important;
+  box-shadow: 0 4px 16px rgba(108, 169, 58, 0.2),
+              0 0 0 3px rgba(108, 169, 58, 0.1) !important;
+  transform: translateY(-2px);
+}
+
+.contact--enhanced .field__input::placeholder {
+  color: rgba(18, 18, 18, 0.5);
+}
+
+.contact--enhanced .field__label {
+  position: absolute;
+  left: 2rem;
+  top: 1.5rem;
+  font-size: 1.6rem;
+  color: rgba(18, 18, 18, 0.6);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0 0.5rem;
+}
+
+.contact--enhanced .field__input:focus + .field__label,
+.contact--enhanced .field__input:not(:placeholder-shown) + .field__label {
+  top: -0.8rem;
+  left: 1.5rem;
+  font-size: 1.3rem;
+  color: #6CA93A;
+  font-weight: 600;
+}
+
+/* Textarea Specific Styles */
+.contact--enhanced .text-area {
+  min-height: 150px;
+  resize: vertical;
+  font-family: inherit;
+  border: 2px solid rgba(108, 169, 58, 0.2) !important;
+  border-radius: 12px !important;
+  outline: none !important;
+}
+
+.contact--enhanced .text-area:focus {
+  border: 2px solid #6CA93A !important;
+  border-color: #6CA93A !important;
+  outline: none !important;
+  box-shadow: 0 4px 16px rgba(108, 169, 58, 0.2),
+              0 0 0 3px rgba(108, 169, 58, 0.1) !important;
+}
+
+/* Button Enhancements */
+.contact--enhanced .contact__button {
+  margin-top: 3rem;
+  text-align: center;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+/* Remove all borders from button and its container */
+.contact--enhanced .contact__button * {
+  border: none !important;
+  outline: none !important;
+}
+
+.contact--enhanced .button {
+  background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+  color: #FFFFFF !important;
+  padding: 1.5rem 4rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  border-radius: 50px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(108, 169, 58, 0.3) !important;
+  position: relative;
+  overflow: hidden;
+  outline: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+.contact--enhanced .button:focus,
+.contact--enhanced .button:focus-visible,
+.contact--enhanced .button:active,
+.contact--enhanced .button:hover,
+.contact--enhanced .button:visited {
+  outline: none !important;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 24px rgba(108, 169, 58, 0.3) !important;
+}
+
+/* Remove any pseudo-element borders and box-shadow borders */
+.contact--enhanced .button:before {
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: 0 8px 24px rgba(108, 169, 58, 0.3) !important;
+}
+
+/* Hide the :after pseudo-element that creates the border effect */
+.contact--enhanced .button:after {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  --buttons-border-width: 0 !important;
+  --border-opacity: 0 !important;
+}
+
+/* Override base button box-shadow that creates border effect */
+.contact--enhanced .button {
+  --buttons-border-width: 0 !important;
+  --border-opacity: 0 !important;
+  --border-offset: 0 !important;
+}
+
+.contact--enhanced .button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.contact--enhanced .button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.contact--enhanced .button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(108, 169, 58, 0.4);
+}
+
+.contact--enhanced .button:active {
+  transform: translateY(-1px);
+}
+
+/* Contact Info Section */
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.contact-info__item {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.contact-info__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(108, 169, 58, 0.2);
+  border-color: rgba(108, 169, 58, 0.3);
+}
+
+.contact-info__icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, #6CA93A 0%, #B8D89A 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  color: #FFFFFF;
+}
+
+.contact-info__title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #121212;
+  margin-bottom: 0.5rem;
+}
+
+.contact-info__text {
+  font-size: 1.5rem;
+  color: rgba(18, 18, 18, 0.7);
+  line-height: 1.6;
+}
+
+/* Map Container */
+.contact-map-container {
+  position: relative;
+  z-index: 1;
+  margin: 4rem 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  animation: fadeInUp 0.8s ease-out 0.7s both;
+}
+
+.contact-map-container iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  display: block;
+}
+
+.contact-map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(108, 169, 58, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Success/Error Messages */
+.contact--enhanced .form__message {
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  animation: slideInDown 0.5s ease-out;
+}
+
+.contact--enhanced .form-status-list {
+  background: rgba(108, 169, 58, 0.1);
+  border: 2px solid #6CA93A;
+  color: #6CA93A;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 749px) {
+  .contact.contact--enhanced {
+    padding: 2.5rem 1.5rem !important;
+    margin: 2rem 1rem;
+  }
+
+  .contact--enhanced .title {
+    font-size: 3.6rem;
+  }
+
+  .contact-info {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-map-container iframe {
+    height: 300px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .contact__floating-leaf,
+  .contact__floating-orb,
+  .contact__floating-dew,
+  .contact--enhanced * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

@@ -1,0 +1,372 @@
+/* About Us Section Enhanced Styles */
+.about-us-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(247, 246, 241, 0.5) 100%);
+}
+
+.about-us-section .page-width {
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+.about-us__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+
+@media screen and (min-width: 990px) {
+  .about-us__container {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+}
+
+/* Image Wrapper */
+.about-us__image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1),
+              0 8px 24px rgba(108, 169, 58, 0.15);
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+/* Override base.css .media position: absolute */
+.about-us__image-wrapper .about-us__image,
+.about-us__image-wrapper .media {
+  width: 100% !important;
+  border-radius: 20px;
+  overflow: hidden;
+  display: block !important;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  height: auto !important;
+}
+
+/* Override base.css .media > img position: absolute */
+.about-us__image-wrapper .about-us__image-element,
+.about-us__image-wrapper .about-us__image img,
+.about-us__image-wrapper .media img,
+.about-us__image-wrapper .media > img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover;
+  display: block !important;
+  border-radius: 20px;
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  margin: 0 !important;
+}
+
+/* Image Placeholder */
+.about-us__image-placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: linear-gradient(135deg, rgba(108, 169, 58, 0.1) 0%, rgba(184, 216, 154, 0.1) 100%);
+  border: 2px dashed rgba(108, 169, 58, 0.3);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.about-us__placeholder-content {
+  text-align: center;
+  color: rgba(108, 169, 58, 0.5);
+}
+
+.about-us__placeholder-content svg {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  stroke: rgba(108, 169, 58, 0.4);
+}
+
+.about-us__placeholder-content p {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: rgba(108, 169, 58, 0.6);
+  margin: 0;
+}
+
+/* Content Wrapper */
+.about-us__content-wrapper {
+  animation: fadeInRight 0.8s ease-out;
+}
+
+/* Heading */
+.about-us__heading {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #121212;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+@media screen and (min-width: 750px) {
+  .about-us__heading {
+    font-size: 4.8rem;
+  }
+}
+
+/* Description */
+.about-us__description {
+  font-size: 1.8rem;
+  line-height: 1.8;
+  color: rgba(18, 18, 18, 0.8);
+  margin-bottom: 3rem;
+}
+
+.about-us__description p {
+  margin-bottom: 1.5rem;
+}
+
+.about-us__description p:last-child {
+  margin-bottom: 0;
+}
+
+/* Why Choose Us Section */
+.about-us__why-choose {
+  margin-bottom: 3rem;
+}
+
+.about-us__why-heading {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #121212;
+  margin-bottom: 2rem;
+}
+
+/* Features List */
+.about-us__features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-us__feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: rgba(18, 18, 18, 0.9);
+}
+
+.about-us__feature-item:last-child {
+  margin-bottom: 0;
+}
+
+.about-us__checkmark {
+  color: #6CA93A;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-right: 1.2rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 0.2rem;
+}
+
+.about-us__feature-text {
+  flex: 1;
+}
+
+/* CTA Text */
+.about-us__cta-text {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #121212;
+  margin-bottom: 4rem;
+  line-height: 1.5;
+}
+
+/* Still Unsure Section */
+.about-us__unsure-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(108, 169, 58, 0.1);
+}
+
+/* Full Width Still Unsure Section */
+.about-us__unsure-section--full-width {
+  max-width: 1100px;
+  margin: 4rem auto 0;
+  width: 100%;
+}
+
+.about-us__unsure-heading {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #121212;
+  margin-bottom: 1.5rem;
+}
+
+.about-us__unsure-text {
+  font-size: 1.8rem;
+  line-height: 1.7;
+  color: rgba(18, 18, 18, 0.8);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button */
+.about-us__button {
+  display: inline-block;
+  background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+  color: #FFFFFF !important;
+  padding: 1.5rem 4rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  border: none !important;
+  border-width: 0 !important;
+  border-style: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(108, 169, 58, 0.3);
+  position: relative;
+  overflow: hidden;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+.about-us__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(108, 169, 58, 0.4);
+  border: none !important;
+  outline: none !important;
+}
+
+.about-us__button:active,
+.about-us__button:focus,
+.about-us__button:focus-visible {
+  transform: translateY(0);
+  border: none !important;
+  outline: none !important;
+}
+
+/* Remove any pseudo-element borders from base button styles */
+.about-us__button:before,
+.about-us__button:after {
+  border: none !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide the :after pseudo-element that creates border effect in base.css */
+.about-us__button:after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Override base button box-shadow that creates border effect */
+.about-us__button {
+  --buttons-border-width: 0 !important;
+  --border-opacity: 0 !important;
+  --border-offset: 0 !important;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 989px) {
+  .about-us__container {
+    gap: 3rem;
+  }
+
+  .about-us__heading {
+    font-size: 3.6rem;
+  }
+
+  .about-us__unsure-section {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .about-us__container {
+    gap: 2rem;
+  }
+
+  .about-us__heading {
+    font-size: 3.2rem;
+  }
+
+  .about-us__description {
+    font-size: 1.6rem;
+  }
+
+  .about-us__feature-item {
+    font-size: 1.6rem;
+  }
+
+  .about-us__cta-text {
+    font-size: 1.8rem;
+  }
+
+  .about-us__unsure-heading {
+    font-size: 2.8rem;
+  }
+
+  .about-us__unsure-text {
+    font-size: 1.6rem;
+  }
+
+  .about-us__button {
+    padding: 1.2rem 3rem;
+    font-size: 1.6rem;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .about-us__image-wrapper,
+  .about-us__content-wrapper {
+    animation: none;
+  }
+}
+

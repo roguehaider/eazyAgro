@@ -16,10 +16,61 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "about_us": {
+      "type": "about-us",
+      "blocks": {
+        "feature_1": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "5+ Years Expertise - Reliable, Australia-wide service"
+          }
+        },
+        "feature_2": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "End-to-End Support - No stress, just results"
+          }
+        },
+        "feature_3": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Custom Solutions - Designed for your unique needs"
+          }
+        },
+        "feature_4": {
+          "type": "feature",
+          "settings": {
+            "feature_text": "Remote consultations available for all of Australia"
+          }
+        }
+      },
+      "block_order": [
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4"
+      ],
+      "settings": {
+        "heading": "Your Trusted Agricultural Products Supplier",
+        "heading_size": "h1",
+        "description": "<p>At EazyAgro, we provide premium-quality agricultural products and materials for every stage of your farming journey. Based in Mount Waverley, Victoria, we combine local expertise with nationwide shipping - delivering industry-leading products at competitive prices across Australia.</p>",
+        "show_why_choose_us": true,
+        "why_heading": "Why Choose Us?",
+        "cta_text": "Let's bring your agricultural vision to life!",
+        "show_unsure_section": true,
+        "unsure_heading": "Still Unsure?",
+        "unsure_text": "Book an appointment with one of our team members. We are here to assist you every step of the way.",
+        "button_label": "Contact Us",
+        "color_scheme": "scheme-1",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
-    "form"
+    "form",
+    "about_us"
   ]
 }
