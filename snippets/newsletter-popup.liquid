@@ -1,0 +1,411 @@
+{%- style -%}
+  .newsletter-popup {
+    position: fixed;
+    bottom: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    z-index: 10001;
+    padding: 3rem 2.5rem 2.5rem;
+    transition: bottom 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-top: 4px solid #6CA93A;
+    box-sizing: border-box;
+  }
+
+  .newsletter-popup.show {
+    bottom: 2rem;
+  }
+
+  .newsletter-popup__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .newsletter-popup__overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .newsletter-popup__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    background: #6CA93A;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.2s ease;
+    z-index: 10;
+  }
+
+  .newsletter-popup__close:hover {
+    background: #5A8A2E;
+    transform: scale(1.1);
+  }
+
+  .newsletter-popup__close:active {
+    transform: scale(0.95);
+  }
+
+  .newsletter-popup__logo {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .newsletter-popup__logo-wrapper {
+    display: inline-block;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
+  .newsletter-popup__logo-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .newsletter-popup__heading {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #2d5016;
+    text-align: center;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+  }
+
+  .newsletter-popup__text {
+    font-size: 1.4rem;
+    color: #2d5016;
+    text-align: center;
+    margin: 0 0 2.5rem;
+    line-height: 1.6;
+  }
+
+  .newsletter-popup__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .newsletter-popup__button {
+    padding: 1.4rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #6CA93A;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+  }
+
+  .newsletter-popup__button--primary {
+    background: #F7F6F1;
+    color: #2d5016;
+  }
+
+  .newsletter-popup__button--primary:hover {
+    background: #6CA93A;
+    color: white;
+    border-color: #6CA93A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 169, 58, 0.3);
+  }
+
+  .newsletter-popup__button--secondary {
+    background: white;
+    color: #2d5016;
+  }
+
+  .newsletter-popup__button--secondary:hover {
+    background: #f5f5f5;
+    border-color: #5A8A2E;
+  }
+
+  .newsletter-popup__form {
+    display: none;
+  }
+
+  .newsletter-popup__form.show {
+    display: block;
+  }
+
+  .newsletter-popup__form-field {
+    margin-bottom: 1.5rem;
+  }
+
+  .newsletter-popup__form-input {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    border: 2px solid #D1E4B9;
+    border-radius: 50px;
+    font-size: 1.4rem;
+    color: #2d5016;
+    background: white;
+    transition: border-color 0.3s ease;
+  }
+
+  .newsletter-popup__form-input:focus {
+    outline: none;
+    border-color: #6CA93A;
+  }
+
+  .newsletter-popup__form-input::placeholder {
+    color: #999;
+  }
+
+  .newsletter-popup__success {
+    display: none;
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .newsletter-popup__success.show {
+    display: block;
+  }
+
+  .newsletter-popup__success-text {
+    font-size: 1.6rem;
+    color: #6CA93A;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .newsletter-popup {
+      width: calc(100vw - 2rem) !important;
+      max-width: calc(100vw - 2rem) !important;
+      padding: 1.8rem 1.5rem 1.5rem !important;
+      bottom: -100% !important;
+      left: 1rem !important;
+      right: auto !important;
+      transform: none !important;
+      max-height: calc(100vh - 2rem) !important;
+      overflow-y: auto !important;
+      box-sizing: border-box !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    .newsletter-popup.show {
+      bottom: 1rem !important;
+    }
+
+    .newsletter-popup__overlay {
+      z-index: 10000 !important;
+    }
+
+    .newsletter-popup {
+      z-index: 10001 !important;
+    }
+
+    .newsletter-popup__heading {
+      font-size: 1.6rem !important;
+      margin-bottom: 0.8rem !important;
+      line-height: 1.3 !important;
+    }
+
+    .newsletter-popup__text {
+      font-size: 1.1rem !important;
+      margin-bottom: 1.5rem !important;
+      line-height: 1.5 !important;
+    }
+
+    .newsletter-popup__button {
+      padding: 1rem 1.5rem !important;
+      font-size: 1.2rem !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .newsletter-popup__close {
+      width: 2.8rem !important;
+      height: 2.8rem !important;
+      top: 0.8rem !important;
+      right: 0.8rem !important;
+      font-size: 1.6rem !important;
+      z-index: 10 !important;
+    }
+
+    .newsletter-popup__logo-wrapper {
+      max-width: 140px !important;
+      margin-bottom: 1rem !important;
+    }
+
+    .newsletter-popup__buttons {
+      gap: 0.8rem !important;
+    }
+  }
+{%- endstyle -%}
+
+<div class="newsletter-popup__overlay" id="newsletter-popup-overlay"></div>
+
+<div class="newsletter-popup" id="newsletter-popup">
+  <button class="newsletter-popup__close" id="newsletter-popup-close" aria-label="Close">
+    ×
+  </button>
+
+  <div class="newsletter-popup__logo">
+    <div class="newsletter-popup__logo-wrapper">
+      {%- if settings.logo != blank -%}
+        {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+        {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+        {% capture sizes %}(max-width: 200px) 100vw, 200px{% endcapture %}
+        {% capture widths %}200, 300, 400{% endcapture %}
+        {{
+          settings.logo
+          | image_url: width: 400
+          | image_tag:
+            class: 'newsletter-popup__logo-image',
+            widths: widths,
+            height: logo_height,
+            width: 200,
+            alt: logo_alt,
+            sizes: sizes
+        }}
+      {%- else -%}
+        <h2 class="newsletter-popup__logo-text">{{ shop.name }}</h2>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <h2 class="newsletter-popup__heading">NEVER MISS A SPECIAL</h2>
+  
+  <p class="newsletter-popup__text">
+    Join our community and stay up to date with the latest deals, product news, and growing tips.
+  </p>
+
+  <div class="newsletter-popup__form" id="newsletter-popup-form" style="display: none;">
+    {% form 'customer', class: 'newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="newsletter-popup__form-field">
+        <input
+          type="email"
+          name="contact[email]"
+          class="newsletter-popup__form-input"
+          placeholder="Enter your email"
+          required
+          autocomplete="email"
+        >
+      </div>
+      <button type="submit" class="newsletter-popup__button newsletter-popup__button--primary">
+        SIGN UP
+      </button>
+    {% endform %}
+  </div>
+
+  <div class="newsletter-popup__buttons" id="newsletter-popup-buttons">
+    <button class="newsletter-popup__button newsletter-popup__button--primary" id="newsletter-popup-signup">
+      SIGN UP
+    </button>
+    <button class="newsletter-popup__button newsletter-popup__button--secondary" id="newsletter-popup-dismiss">
+      NO, THANKS
+    </button>
+  </div>
+
+  <div class="newsletter-popup__success" id="newsletter-popup-success">
+    <p class="newsletter-popup__success-text">Thank you for subscribing!</p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('newsletter-popup');
+    const overlay = document.getElementById('newsletter-popup-overlay');
+    
+    if (!popup || !overlay) {
+      return;
+    }
+
+    const closeBtn = document.getElementById('newsletter-popup-close');
+    const signupBtn = document.getElementById('newsletter-popup-signup');
+    const dismissBtn = document.getElementById('newsletter-popup-dismiss');
+    const form = document.getElementById('newsletter-popup-form');
+    const buttons = document.getElementById('newsletter-popup-buttons');
+    const success = document.getElementById('newsletter-popup-success');
+    const formElement = form ? form.querySelector('form') : null;
+
+    // Check if popup was already dismissed
+    const popupDismissed = localStorage.getItem('newsletter-popup-dismissed');
+    if (popupDismissed) {
+      return;
+    }
+
+    // Show popup after 5 seconds
+    setTimeout(function() {
+      if (popup && overlay) {
+        popup.classList.add('show');
+        overlay.classList.add('show');
+      }
+    }, 5000);
+
+    // Close popup function
+    function closePopup() {
+      if (popup && overlay) {
+        popup.classList.remove('show');
+        overlay.classList.remove('show');
+        localStorage.setItem('newsletter-popup-dismissed', 'true');
+      }
+    }
+
+    // Redirect to signup/login page when signup button is clicked
+    if (signupBtn) {
+      signupBtn.addEventListener('click', function() {
+        window.location.href = 'https://shopify.com/authentication/79130427608/login?client_id=ac09485d-0fbd-41c3-9e23-e80650189ce2&locale=en&redirect_uri=%2Fauthentication%2F79130427608%2Foauth%2Fauthorize%3Fclient_id%3Dac09485d-0fbd-41c3-9e23-e80650189ce2%26locale%3Den%26nonce%3D93dd7769-795a-4ec5-baed-f4bbd772d07b%26redirect_uri%3Dhttps%253A%252F%252Fshopify.com%252F79130427608%252Faccount%252Fcallback%253Fsource%253Dcore%26region_country%3DAU%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bcustomer-account-api%253Afull%26state%3DhWN6Rr3Cua8oAELt9EBdYPNC&region_country=AU';
+      });
+    }
+
+    // Handle form submission
+    if (formElement && form && success) {
+      formElement.addEventListener('submit', function(e) {
+        // Let the form submit normally, then show success
+        setTimeout(function() {
+          form.classList.remove('show');
+          success.classList.add('show');
+          setTimeout(closePopup, 2000);
+        }, 500);
+      });
+    }
+
+    // Dismiss popup
+    if (dismissBtn) {
+      dismissBtn.addEventListener('click', closePopup);
+    }
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closePopup);
+    }
+    if (overlay) {
+      overlay.addEventListener('click', closePopup);
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && popup && popup.classList.contains('show')) {
+        closePopup();
+      }
+    });
+  });
+</script>
+

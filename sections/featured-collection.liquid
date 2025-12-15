@@ -37,6 +37,63 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .collection__title-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .collection__title-heading {
+    margin: 0;
+    flex: 1;
+  }
+
+  .collection__view-all-button {
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%);
+    color: #FFFFFF !important;
+    padding: 1rem 2.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(108, 169, 58, 0.2);
+    display: inline-block;
+  }
+
+  .collection__view-all-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(108, 169, 58, 0.3);
+    color: #FFFFFF !important;
+    text-decoration: none;
+  }
+
+  .collection__view-all-button:active {
+    transform: translateY(0);
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection__title-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .collection__view-all-button {
+      width: 100%;
+      text-align: center;
+      padding: 0.9rem 2rem;
+      font-size: 1.3rem;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -74,11 +131,22 @@
     data-id="{{ section.id }}"
   >
     <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
-      {%- if section.settings.title != blank -%}
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.title }}
-        </h2>
-      {%- endif -%}
+      <div class="collection__title-header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} collection__title-heading">
+            {{ section.settings.title }}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.show_view_all -%}
+          <a
+            href="/collections/all"
+            class="collection__view-all-button"
+            aria-label="View all products"
+          >
+            View All
+          </a>
+        {%- endif -%}
+      </div>
       {%- if section.settings.description != blank
         or section.settings.show_description
         and section.settings.collection.description != empty

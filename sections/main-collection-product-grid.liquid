@@ -25,15 +25,29 @@
 {%- endif -%}
 
 {%- style -%}
+  /* No padding on mobile/small devices */
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding: 0;
   }
 
   @media screen and (min-width: 750px) {
+    .section-template--{{ section.id }}__product-grid-padding {
+      padding-top: 36px;
+      padding-bottom: 36px;
+      padding: 15px;
+    }
+
+    .section-template--{{ section.id }}__main-padding {
+      padding-top: 36px;
+      padding-bottom: 12px;
+      margin-top: 50px;
+    }
+  }
+
+  /* Laptop screens and above - apply full padding */
+  @media screen and (min-width: 990px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding: 36px 135px;
     }
   }
 {%- endstyle -%}

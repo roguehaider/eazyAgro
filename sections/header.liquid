@@ -8,6 +8,7 @@
   onload="this.media='all'"
 >
 <link rel="stylesheet" href="{{ 'header-enhanced.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'menu-drawer-fix.css' | asset_url }}">
 
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -176,6 +177,60 @@
   .header--compact .header__search .header__icon .header__icon-close {
     display: none !important;
     visibility: hidden !important;
+  }
+
+  /* Mobile Responsiveness Fixes */
+  @media screen and (max-width: 749px) {
+    /* Hide menu text items on mobile - they're in hamburger menu */
+    .header--compact .header__nav-item:not(.header__nav-item--icon) {
+      display: none !important;
+    }
+
+    /* Show only icon items (cart, account, search) */
+    .header--compact .header__nav-item--icon,
+    .header--compact .header__search {
+      display: flex !important;
+    }
+
+    /* Ensure icons are visible and properly spaced */
+    .header--compact .header__nav-list {
+      gap: 0.8rem !important;
+      padding: 0 0.5rem !important;
+      flex-wrap: nowrap !important;
+      justify-content: flex-end !important;
+      margin: 0 !important;
+    }
+
+    .header--compact .header__nav-list li {
+      margin: 0 !important;
+      padding: 0 !important;
+      flex-shrink: 0 !important;
+    }
+
+    .header--compact .header__nav-item--icon {
+      padding: 0.5rem !important;
+      min-width: 40px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    /* Ensure header doesn't overflow */
+    .header--compact {
+      overflow-x: visible !important;
+      overflow-y: visible !important;
+    }
+
+    .header--compact .header__navigation {
+      overflow: visible !important;
+      max-width: 100% !important;
+      flex: 1 !important;
+    }
+
+    /* Make sure icons fit on screen */
+    .header--compact .header__nav-list {
+      max-width: 100% !important;
+    }
   }
 </style>
 

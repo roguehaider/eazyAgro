@@ -447,6 +447,8 @@
 .footer--enhanced .footer__bottom-wrapper {
   display: flex;
   justify-content: space-between;
+  padding-left: 0;
+  padding-right: 0;
   align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
@@ -503,10 +505,13 @@
 }
 
 /* Scroll to Top Button */
-.footer--enhanced .footer__scroll-top {
+.footer--enhanced .footer__scroll-top,
+#scrollToTop,
+.footer__scroll-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
+  left: auto;
   width: 50px;
   height: 50px;
   background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%);
@@ -521,9 +526,14 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
+  margin: 0;
+  padding: 0;
+  border: none;
 }
 
-.footer--enhanced .footer__scroll-top.visible {
+.footer--enhanced .footer__scroll-top.visible,
+#scrollToTop.visible,
+.footer__scroll-top.visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -539,6 +549,66 @@
   width: 24px;
   height: 24px;
   fill: #FFFFFF;
+}
+
+/* Mobile Responsiveness for Scroll to Top Button - Inside Footer */
+@media screen and (max-width: 749px) {
+  .footer--enhanced {
+    padding-bottom: 7rem !important;
+    position: relative;
+  }
+
+  #scrollToTop,
+  .footer__scroll-top,
+  .footer--enhanced .footer__scroll-top {
+    position: absolute !important;
+    bottom: 15px !important;
+    right: 15px !important;
+    left: auto !important;
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    max-width: 45px !important;
+    z-index: 10 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #scrollToTop.visible,
+  .footer__scroll-top.visible,
+  .footer--enhanced .footer__scroll-top.visible {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+  }
+
+  /* Ensure button shows when scrolled */
+  #scrollToTop:not(.visible),
+  .footer__scroll-top:not(.visible),
+  .footer--enhanced .footer__scroll-top:not(.visible) {
+    transform: translateY(20px) !important;
+  }
+
+  #scrollToTop svg,
+  .footer__scroll-top svg,
+  .footer--enhanced .footer__scroll-top svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+/* Desktop/Laptop - Fixed Position */
+@media screen and (min-width: 750px) {
+  #scrollToTop.visible,
+  .footer__scroll-top.visible,
+  .footer--enhanced .footer__scroll-top.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    display: flex !important;
+  }
 }
 
 /* Additional Floating Elements */
@@ -610,6 +680,19 @@
     grid-template-columns: 1fr;
   }
   
+  .footer--enhanced .footer__content-bottom {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .footer--enhanced .footer__bottom-wrapper.page-width {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+    max-width: 100% !important;
+  }
+
   .footer--enhanced .footer__bottom-wrapper {
     flex-direction: column;
     text-align: center;

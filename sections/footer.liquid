@@ -7,6 +7,46 @@
 {{ 'footer-enhanced.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  /* Mobile Scroll to Top Button - Inside Footer */
+  @media screen and (max-width: 749px) {
+    .footer--enhanced {
+      padding-bottom: 7rem !important;
+      position: relative;
+    }
+
+    #scrollToTop,
+    .footer__scroll-top {
+      position: absolute !important;
+      bottom: 15px !important;
+      right: 15px !important;
+      left: auto !important;
+      width: 45px !important;
+      height: 45px !important;
+      z-index: 10 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    #scrollToTop.visible,
+    .footer__scroll-top.visible {
+      transform: translateY(0) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      display: flex !important;
+    }
+  }
+
+  /* Desktop/Laptop - Ensure Button is Visible */
+  @media screen and (min-width: 750px) {
+    #scrollToTop.visible,
+    .footer__scroll-top.visible {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+      display: flex !important;
+    }
+  }
+
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
   }
