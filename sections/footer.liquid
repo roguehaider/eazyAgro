@@ -157,10 +157,19 @@
             <a href="{{ routes.root_url }}" class="footer__nav-link{% if request.page_type == 'index' %} footer__nav-link--active{% endif %}">Home</a>
           </li>
           <li class="footer__nav-item">
-            <a href="{{ routes.collections_url }}" class="footer__nav-link">Catalog</a>
+            <a href="/collections/all" class="footer__nav-link">Products</a>
           </li>
           <li class="footer__nav-item">
-            <a href="{{ routes.root_url }}/pages/contact" class="footer__nav-link">Contact</a>
+            <a href="{{ routes.root_url }}/pages/business-registration" class="footer__nav-link">Business registration</a>
+          </li>
+          <li class="footer__nav-item">
+            <a href="{{ routes.root_url }}/collections/sale" class="footer__nav-link">Sale</a>
+          </li>
+          <li class="footer__nav-item">
+            <a href="{{ routes.root_url | append: '/pages/about-us' | replace: '//', '/' }}" class="footer__nav-link">About us</a>
+          </li>
+          <li class="footer__nav-item">
+            <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}" class="footer__nav-link">Contact</a>
           </li>
         {%- endif -%}
       </ul>

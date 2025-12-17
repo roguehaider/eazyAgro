@@ -24,6 +24,13 @@
     margin-left: -1.2rem;
   }
 
+  @media screen and (max-width: 989px) {
+    header-drawer {
+      margin-left: 0 !important;
+      display: block !important;
+    }
+  }
+
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
@@ -40,6 +47,23 @@
 
   .menu-drawer-container {
     display: flex;
+  }
+
+  /* Toggle between hamburger and close icons */
+  .menu-drawer-container summary .icon-hamburger {
+    display: block;
+  }
+
+  .menu-drawer-container summary .icon-close {
+    display: none;
+  }
+
+  .menu-drawer-container[open] summary .icon-hamburger {
+    display: none;
+  }
+
+  .menu-drawer-container[open] summary .icon-close {
+    display: block;
   }
 
   .list-menu {
@@ -83,6 +107,12 @@
     flex-direction: row !important;
     grid-template-areas: none !important;
     grid-template-columns: none !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding-left: 1.5rem !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
   .header--compact .header__heading,
@@ -90,12 +120,27 @@
     grid-area: unset !important;
     justify-self: start !important;
     text-align: left !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Push navigation to the right */
+  .header--compact .header__navigation {
+    margin-left: auto !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding-right: 1.5rem !important;
   }
 
   .header--compact .header__nav-list {
     display: flex !important;
     flex-direction: row !important;
     list-style: none !important;
+    gap: 2rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-right: 0 !important;
+    align-items: center !important;
   }
 
   .header--compact .header__nav-list li {
@@ -181,6 +226,104 @@
 
   /* Mobile Responsiveness Fixes */
   @media screen and (max-width: 749px) {
+    /* Prevent horizontal scroll */
+    .header--compact {
+      width: 100% !important;
+      max-width: 100vw !important;
+      padding-left: 1rem !important;
+      padding-right: 0 !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Ensure hamburger button is always visible - MAXIMUM OVERRIDE */
+    header-drawer,
+    .header header-drawer,
+    .header--compact header-drawer,
+    body header-drawer,
+    body:has(.moving-announcement) header-drawer {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      z-index: 10001 !important;
+      position: relative !important;
+      margin-left: 0 !important;
+      margin-right: 1rem !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      max-width: 44px !important;
+      max-height: 44px !important;
+      overflow: visible !important;
+      flex-shrink: 0 !important;
+      pointer-events: auto !important;
+    }
+
+    header-drawer summary,
+    .header header-drawer summary,
+    .header--compact header-drawer summary,
+    body header-drawer summary,
+    body:has(.moving-announcement) header-drawer summary {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      max-width: 44px !important;
+      max-height: 44px !important;
+      padding: 0.5rem !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: none !important;
+      cursor: pointer !important;
+      z-index: 10002 !important;
+      position: relative !important;
+      align-items: center !important;
+      justify-content: center !important;
+      pointer-events: auto !important;
+      list-style: none !important;
+    }
+
+    header-drawer summary::-webkit-details-marker {
+      display: none !important;
+    }
+
+    header-drawer .icon,
+    header-drawer svg,
+    header-drawer summary .icon,
+    header-drawer summary svg,
+    header-drawer summary span svg {
+      width: 24px !important;
+      height: 24px !important;
+      min-width: 24px !important;
+      min-height: 24px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      fill: currentColor !important;
+      color: currentColor !important;
+    }
+
+    /* Ensure header shows hamburger */
+    .header__heading,
+    .header--compact .header__heading {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0 !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Fix navigation on mobile */
+    .header--compact .header__navigation {
+      padding-right: 1rem !important;
+      max-width: calc(100vw - 200px) !important;
+      overflow-x: hidden !important;
+    }
+
     /* Hide menu text items on mobile - they're in hamburger menu */
     .header--compact .header__nav-item:not(.header__nav-item--icon) {
       display: none !important;
@@ -296,11 +439,8 @@
   -%}
   <div class="header-top-strip"></div>
   <header class="header header--compact page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
-    {%- liquid
-      if section.settings.menu != blank
-        render 'header-drawer'
-      endif
-    -%}
+    {%- comment -%} Always render header-drawer for mobile, even if menu is blank {%- endcomment -%}
+    {%- render 'header-drawer' -%}
 
     {%- if request.page_type == 'index' -%}
       <h1 class="header__heading">
@@ -335,35 +475,36 @@
 
     <nav class="header__navigation">
       <ul class="header__nav-list">
-        {%- if section.settings.menu != blank -%}
-          {%- for link in section.settings.menu.links -%}
-            <li>
-              <a
-                href="{{ link.url }}"
-                class="header__nav-item{% if link.current %} header__nav-item--active{% endif %}"
-                {% if link.current %}aria-current="page"{% endif %}
-              >
-                {{ link.title | escape }}
-              </a>
-            </li>
-          {%- endfor -%}
-        {%- else -%}
-          <li>
-            <a href="{{ routes.root_url }}" class="header__nav-item{% if request.page_type == 'index' %} header__nav-item--active{% endif %}">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="{{ routes.collections_url }}" class="header__nav-item">
-              Catalog
-            </a>
-          </li>
-          <li>
-            <a href="{{ routes.root_url }}/pages/contact" class="header__nav-item">
-              Contact
-            </a>
-          </li>
-        {%- endif -%}
+        <li>
+          <a href="{{ routes.root_url }}" class="header__nav-item{% if request.page_type == 'index' %} header__nav-item--active{% endif %}">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="/collections/all" class="header__nav-item{% if request.page_type == 'collection' %} header__nav-item--active{% endif %}">
+            Products
+          </a>
+        </li>
+        <li>
+          <a href="{{ routes.root_url }}/pages/business-registration" class="header__nav-item{% if page.handle == 'business-registration' %} header__nav-item--active{% endif %}">
+            Business registration
+          </a>
+        </li>
+        <li>
+          <a href="{{ routes.root_url }}/collections/sale" class="header__nav-item{% if collection.handle == 'sale' %} header__nav-item--active{% endif %}">
+            Sale
+          </a>
+        </li>
+        <li>
+          <a href="{{ routes.root_url | append: '/pages/about-us' | replace: '//', '/' }}" class="header__nav-item{% if page.handle == 'about-us' %} header__nav-item--active{% endif %}">
+            About us
+          </a>
+        </li>
+        <li>
+          <a href="{{ routes.root_url | append: '/pages/contact' | replace: '//', '/' }}" class="header__nav-item{% if page.handle == 'contact' %} header__nav-item--active{% endif %}">
+            Contact
+          </a>
+        </li>
         
         <li>
           <a href="{{ routes.cart_url }}" class="header__nav-item header__nav-item--icon" id="cart-icon-bubble" aria-label="Cart">
@@ -615,7 +756,6 @@
     {
       "type": "link_list",
       "id": "menu",
-      "default": "main-menu",
       "label": "t:sections.header.settings.menu.label"
     },
     {

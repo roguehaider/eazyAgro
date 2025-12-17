@@ -22,117 +22,154 @@
     color: rgba(var(--color-foreground), 0.85);
   }
 
-  .featured-solution__heading {
+  .featured-solution__subheading {
+    font-size: 1.8rem;
+    font-weight: 600;
     color: #6CA93A;
-    font-weight: 700;
+    margin-top: -1.5rem;
     margin-bottom: 2rem;
+    display: block;
+    letter-spacing: 0.5px;
+  }
+
+  .featured-solution__description {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    color: rgba(var(--color-foreground), 0.8);
+  }
+
+  .featured-solution__heading {
+    color: #2D423D;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
   }
 
   .featured-solution__feature-list {
     list-style: none;
     padding: 0;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
   }
 
   .featured-solution__feature-item {
-    padding: 0.8rem 0;
+    padding: 1rem 0;
     font-size: 1.6rem;
-    line-height: 1.6;
+    line-height: 1.5;
     position: relative;
-    padding-left: 2.5rem;
+    padding-left: 0;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .featured-solution__feature-icon {
+    flex-shrink: 0;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-top: -0.2rem;
+  }
+
+  .featured-solution__feature-content {
+    flex: 1;
   }
 
   .featured-solution__feature-item::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #6CA93A;
-    font-weight: bold;
-    font-size: 1.8rem;
+    display: none;
   }
 
   .featured-solution__feature-title {
-    font-weight: 600;
-    color: #6CA93A;
+    font-weight: 700;
+    color: #2D423D;
     display: block;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
   }
 
   .featured-solution__feature-description {
     color: rgba(var(--color-foreground), 0.75);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   .featured-solution__tagline {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-style: italic;
-    color: rgba(var(--color-foreground), 0.7);
-    margin: 2rem 0;
+    color: #2D423D;
+    margin: 3rem 0 2rem;
+    padding-left: 1.5rem;
+    border-left: 4px solid #6CA93A;
+    font-weight: 500;
+  }
+
+  .featured-solution__benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .featured-solution__benefit-item {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2D423D;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
 
   .featured-solution__cta {
     margin-top: 2.5rem;
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #6CA93A;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .featured-solution__cta:hover {
+    border-bottom-color: #6CA93A;
   }
 
   .featured-solution__image-carousel {
     position: relative;
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    aspect-ratio: 4/5;
   }
-
-  .featured-solution__image-carousel .slider-button {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-  }
-
-  .featured-solution__image-carousel .slider-button:hover {
-    background-color: #6CA93A;
-    color: white;
-  }
-
-  .featured-solution__image-carousel .slider-button svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .featured-solution__grid {
-    gap: 3rem;
-    align-items: center;
-  }
-
-  .featured-solution__text-item {
-    padding: 2rem 0;
-  }
-
-  .featured-solution__image-item {
-    padding: 1rem 0;
+  
+  .featured-solution__image-carousel .slider,
+  .featured-solution__image-carousel .slideshow__slide {
+    height: 100%;
   }
 
   .featured-solution__image-wrapper {
+    height: 100%;
     border-radius: 12px;
     overflow: hidden;
-    position: relative;
-    display: block;
-    width: 100%;
   }
 
   .featured-solution__image-wrapper img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
     position: relative;
     object-fit: cover;
     border-radius: 12px;
+  }
+  
+  /* Feature emoji styling helper if title starts with emoji */
+  .feature-emoji {
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    font-size: 1.8rem;
   }
 
   @media screen and (max-width: 749px) {
@@ -141,30 +178,36 @@
     }
 
     .featured-solution__heading {
-      font-size: 2.4rem;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    
+    .featured-solution__subheading {
+      font-size: 1.6rem;
       margin-bottom: 1.5rem;
     }
 
     .featured-solution__feature-item {
-      font-size: 1.4rem;
-      padding: 0.6rem 0;
-      padding-left: 2rem;
+      font-size: 1.5rem;
+      padding-left: 0;
+    }
+    
+    .feature-emoji {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-right: 0.5rem;
     }
 
     .featured-solution__tagline {
-      font-size: 1.4rem;
-      margin: 1.5rem 0;
-    }
-
-    .featured-solution__cta {
       font-size: 1.6rem;
-      margin-top: 2rem;
+      margin: 2rem 0;
     }
   }
 
   @media screen and (min-width: 750px) {
     .featured-solution__text-item {
-      padding-right: 2rem;
+      padding-right: 4rem;
     }
 
     .featured-solution__image-item {
@@ -185,17 +228,30 @@
             </h2>
           {%- endif -%}
 
+          {%- if section.settings.subheading != blank -%}
+            <span class="featured-solution__subheading">{{ section.settings.subheading }}</span>
+          {%- endif -%}
+
+          {%- if section.settings.description != blank -%}
+            <div class="featured-solution__description rte">{{ section.settings.description }}</div>
+          {%- endif -%}
+
           {%- if section.blocks.size > 0 -%}
             <ul class="featured-solution__feature-list">
               {%- for block in section.blocks -%}
                 {%- if block.type == 'feature' -%}
                   <li class="featured-solution__feature-item" {{ block.shopify_attributes }}>
-                    {%- if block.settings.feature_title != blank -%}
-                      <span class="featured-solution__feature-title">{{ block.settings.feature_title }}</span>
+                    {%- if block.settings.icon_text != blank -%}
+                      <div class="featured-solution__feature-icon">{{ block.settings.icon_text }}</div>
                     {%- endif -%}
-                    {%- if block.settings.feature_description != blank -%}
-                      <span class="featured-solution__feature-description">{{ block.settings.feature_description }}</span>
-                    {%- endif -%}
+                    <div class="featured-solution__feature-content">
+                      {%- if block.settings.feature_title != blank -%}
+                        <span class="featured-solution__feature-title">{{ block.settings.feature_title }}</span>
+                      {%- endif -%}
+                      {%- if block.settings.feature_description != blank -%}
+                        <span class="featured-solution__feature-description">{{ block.settings.feature_description }}</span>
+                      {%- endif -%}
+                    </div>
                   </li>
                 {%- endif -%}
               {%- endfor -%}
@@ -206,8 +262,21 @@
             <p class="featured-solution__tagline">{{ section.settings.tagline }}</p>
           {%- endif -%}
 
+          {%- assign benefit_blocks = section.blocks | where: 'type', 'benefit' -%}
+          {%- if benefit_blocks.size > 0 -%}
+            <div class="featured-solution__benefits">
+              {%- for block in benefit_blocks -%}
+                <div class="featured-solution__benefit-item" {{ block.shopify_attributes }}>
+                  {{ block.settings.text }}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
           {%- if section.settings.cta_text != blank -%}
-            <p class="featured-solution__cta">{{ section.settings.cta_text }}</p>
+            <a href="{{ section.settings.cta_link }}" class="featured-solution__cta">
+              {{ section.settings.cta_text }}
+            </a>
           {%- endif -%}
         </div>
       </div>
@@ -358,6 +427,18 @@
       "label": "Heading size"
     },
     {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "One Source. Endless Possibilities."
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Modern growers need smart, reliable, and chemical-free solutions.</p>"
+    },
+    {
       "type": "textarea",
       "id": "tagline",
       "label": "Tagline",
@@ -368,6 +449,11 @@
       "id": "cta_text",
       "label": "Call to Action Text",
       "default": "Grow confidently."
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Call to Action Link"
     },
     {
       "type": "checkbox",
@@ -423,6 +509,12 @@
       "settings": [
         {
           "type": "text",
+          "id": "icon_text",
+          "label": "Icon (Emoji)",
+          "default": "✅"
+        },
+        {
+          "type": "text",
           "id": "feature_title",
           "label": "Feature Title",
           "default": "Greenhouse"
@@ -432,6 +524,18 @@
           "id": "feature_description",
           "label": "Feature Description",
           "default": "Snap on poly film for warmth"
+        }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit Text",
+          "default": "Built to Last"
         }
       ]
     },
@@ -452,25 +556,7 @@
       "name": "Featured Solution",
       "blocks": [
         {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Greenhouse",
-            "feature_description": "Snap on poly film for warmth"
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Shade House",
-            "feature_description": "Throw on shade cloth for cool protection"
-          }
-        },
-        {
-          "type": "feature",
-          "settings": {
-            "feature_title": "Orchard/Net Shelter",
-            "feature_description": "Secure bird netting in minutes"
-          }
+          "type": "feature"
         },
         {
           "type": "image"
