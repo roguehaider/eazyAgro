@@ -244,15 +244,15 @@
   display: none !important;
 }
 
-/* Cart icon needs to be larger due to different viewBox (40x40 vs 18x19) */
+/* Ensure cart icon matches other icons - same size */
 .header__nav-item--icon#cart-icon-bubble .svg-wrapper,
 .header__nav-item--icon#cart-icon-bubble .svg-wrapper svg {
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  min-height: 30px !important;
-  max-width: 30px !important;
-  max-height: 30px !important;
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px !important;
+  min-height: 26px !important;
+  max-width: 26px !important;
+  max-height: 26px !important;
 }
 
 /* Hide close icon in search - override base.css */
@@ -301,64 +301,41 @@
   object-fit: contain !important;
 }
 
-/* Exclude cart icon from the above rule - it needs to be larger */
-.header--compact #cart-icon-bubble .svg-wrapper svg {
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  min-height: 30px !important;
-  max-width: 30px !important;
-  max-height: 30px !important;
-  display: block !important;
-  box-sizing: border-box !important;
-  object-fit: contain !important;
-}
-
 .header__nav-text {
   display: none !important;
 }
 
-/* Cart icon needs to be larger due to different viewBox (40x40 vs 18x19) */
+/* Ensure cart icon matches other icons - same size */
 #cart-icon-bubble .svg-wrapper,
 #cart-icon-bubble .svg-wrapper svg,
 .header__nav-item--icon#cart-icon-bubble .svg-wrapper,
 .header__nav-item--icon#cart-icon-bubble .svg-wrapper svg,
 .header--compact #cart-icon-bubble .svg-wrapper,
 .header--compact #cart-icon-bubble .svg-wrapper svg {
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  min-height: 30px !important;
-  max-width: 30px !important;
-  max-height: 30px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  box-sizing: border-box !important;
-}
-
-/* Force all icons in navigation to be exactly 26px, except cart which is 30px */
-.header--compact .header__navigation .svg-wrapper svg,
-.header--compact .header__navigation .header__nav-item--icon .svg-wrapper svg,
-.header--compact .header__search .header__icon .svg-wrapper svg,
-.header--compact .header__nav-item--icon .svg-wrapper svg {
   width: 26px !important;
   height: 26px !important;
   min-width: 26px !important;
   min-height: 26px !important;
   max-width: 26px !important;
   max-height: 26px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   box-sizing: border-box !important;
 }
 
-/* Cart icon is larger to compensate for viewBox difference */
+/* Force all icons in navigation to be exactly 26px - consistent size for all */
+.header--compact .header__navigation .svg-wrapper svg,
+.header--compact .header__navigation .header__nav-item--icon .svg-wrapper svg,
+.header--compact .header__search .header__icon .svg-wrapper svg,
+.header--compact .header__nav-item--icon .svg-wrapper svg,
 .header--compact #cart-icon-bubble .svg-wrapper svg {
-  width: 30px !important;
-  height: 30px !important;
-  min-width: 30px !important;
-  min-height: 30px !important;
-  max-width: 30px !important;
-  max-height: 30px !important;
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px !important;
+  min-height: 26px !important;
+  max-width: 26px !important;
+  max-height: 26px !important;
   box-sizing: border-box !important;
 }
 
@@ -395,15 +372,15 @@
     max-height: 26px !important;
   }
   
-  /* Cart icon is larger on desktop to compensate for viewBox difference */
+  /* Cart icon matches other icons on desktop - same size */
   .header--compact #cart-icon-bubble .svg-wrapper,
   .header--compact #cart-icon-bubble .svg-wrapper svg {
-    width: 30px !important;
-    height: 30px !important;
-    min-width: 30px !important;
-    min-height: 30px !important;
-    max-width: 30px !important;
-    max-height: 30px !important;
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
   }
 }
 
