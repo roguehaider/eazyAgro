@@ -1,0 +1,668 @@
+/* ============================================
+   Enhanced Collection Page Styles
+   Same UI as Featured Collection with Animations & Floating Objects
+   Color scheme: #6CA93A, #B8D89A, #D1E4B9
+   ============================================ */
+
+/* Collection Page Container */
+.collection.collection--enhanced,
+.section.color-scheme-1,
+.section.color-scheme-2,
+.section.color-scheme-3 {
+  position: relative;
+  overflow: visible;
+  padding: 4rem 0 !important;
+  background: linear-gradient(180deg, rgba(247, 246, 241, 0.5) 0%, rgba(255, 255, 255, 1) 100%);
+  min-height: 100vh;
+}
+
+/* Floating Objects Container */
+.collection::before,
+#product-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(108, 169, 58, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(184, 216, 154, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating Leaves - Agricultural Theme */
+.collection__floating-leaves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.collection__floating-leaf {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  opacity: 0.3;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236CA93A'%3E%3Cpath d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E") no-repeat center;
+  background-size: contain;
+  animation: floatLeaf 20s infinite ease-in-out;
+  filter: drop-shadow(0 2px 4px rgba(108, 169, 58, 0.2));
+}
+
+.collection__floating-leaf--1 {
+  left: 5%;
+  top: 15%;
+  animation-delay: 0s;
+  animation-duration: 18s;
+  width: 35px;
+  height: 35px;
+}
+
+.collection__floating-leaf--2 {
+  left: 92%;
+  top: 25%;
+  animation-delay: 4s;
+  animation-duration: 22s;
+  width: 30px;
+  height: 30px;
+  opacity: 0.25;
+}
+
+.collection__floating-leaf--3 {
+  left: 8%;
+  top: 60%;
+  animation-delay: 8s;
+  animation-duration: 25s;
+  width: 40px;
+  height: 40px;
+  opacity: 0.2;
+}
+
+.collection__floating-leaf--4 {
+  left: 88%;
+  top: 70%;
+  animation-delay: 12s;
+  animation-duration: 20s;
+  width: 28px;
+  height: 28px;
+  opacity: 0.25;
+}
+
+@keyframes floatLeaf {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(30px, -40px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-20px, -60px) rotate(-5deg);
+  }
+  75% {
+    transform: translate(40px, -30px) rotate(3deg);
+  }
+}
+
+/* Floating Orbs */
+.collection__floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108, 169, 58, 0.08) 0%, rgba(189, 208, 150, 0.04) 50%, transparent 100%);
+  filter: blur(25px);
+  animation: floatOrb 15s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.collection__floating-orb--1 {
+  width: 150px;
+  height: 150px;
+  top: 10%;
+  right: 8%;
+  animation-delay: 0s;
+  animation-duration: 18s;
+}
+
+.collection__floating-orb--2 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 10%;
+  animation-delay: 5s;
+  animation-duration: 20s;
+  background: radial-gradient(circle, rgba(189, 208, 150, 0.06) 0%, rgba(209, 228, 185, 0.03) 50%, transparent 100%);
+}
+
+.collection__floating-orb--3 {
+  width: 120px;
+  height: 120px;
+  top: 50%;
+  left: 50%;
+  animation-delay: 10s;
+  animation-duration: 22s;
+  background: radial-gradient(circle, rgba(126, 174, 68, 0.05) 0%, rgba(189, 208, 150, 0.02) 50%, transparent 100%);
+}
+
+@keyframes floatOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.1);
+    opacity: 0.6;
+  }
+  66% {
+    transform: translate(-25px, 30px) scale(0.9);
+    opacity: 0.5;
+  }
+}
+
+/* Floating Dew Drops */
+.collection__floating-dew {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(189, 208, 150, 0.6) 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 15px rgba(108, 169, 58, 0.2);
+  animation: floatDew 12s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.collection__floating-dew--1 {
+  left: 15%;
+  top: 30%;
+  animation-delay: 0s;
+  width: 7px;
+  height: 7px;
+}
+
+.collection__floating-dew--2 {
+  left: 85%;
+  top: 45%;
+  animation-delay: 3s;
+  width: 5px;
+  height: 5px;
+}
+
+.collection__floating-dew--3 {
+  left: 20%;
+  top: 75%;
+  animation-delay: 6s;
+  width: 8px;
+  height: 8px;
+}
+
+.collection__floating-dew--4 {
+  left: 75%;
+  top: 15%;
+  animation-delay: 9s;
+  width: 6px;
+  height: 6px;
+}
+
+@keyframes floatDew {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(25px, -35px) scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* Page Title Enhancements */
+.collection-hero__title,
+.facets__heading,
+h1.title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 3rem !important;
+  animation: fadeInUp 0.8s ease-out;
+  color: #121212 !important;
+}
+
+.collection-hero__title::after,
+.facets__heading::after,
+h1.title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #6CA93A 0%, #B8D89A 100%);
+  border-radius: 2px;
+  animation: underlineGrow 0.8s ease-out 0.3s both;
+}
+
+@keyframes underlineGrow {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 60px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Product Grid Enhancements */
+.product-grid {
+  position: relative;
+  z-index: 2;
+  margin-top: 2rem;
+}
+
+/* Product Card Enhancements - Same as Featured Collection */
+.collection .card-wrapper,
+#product-grid .card-wrapper,
+.product-grid .card-wrapper {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.4s ease;
+  animation: cardFadeIn 0.6s ease-out both;
+}
+
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Staggered Animation for Cards */
+.grid__item:nth-child(1) .card-wrapper {
+  animation-delay: 0.1s;
+}
+
+.grid__item:nth-child(2) .card-wrapper {
+  animation-delay: 0.2s;
+}
+
+.grid__item:nth-child(3) .card-wrapper {
+  animation-delay: 0.3s;
+}
+
+.grid__item:nth-child(4) .card-wrapper {
+  animation-delay: 0.4s;
+}
+
+.grid__item:nth-child(5) .card-wrapper {
+  animation-delay: 0.5s;
+}
+
+.grid__item:nth-child(6) .card-wrapper {
+  animation-delay: 0.6s;
+}
+
+.grid__item:nth-child(7) .card-wrapper {
+  animation-delay: 0.7s;
+}
+
+.grid__item:nth-child(8) .card-wrapper {
+  animation-delay: 0.8s;
+}
+
+/* Card Hover Effects */
+.collection .card-wrapper:hover,
+#product-grid .card-wrapper:hover,
+.product-grid .card-wrapper:hover {
+  transform: translateY(-12px) scale(1.02) !important;
+  z-index: 10;
+}
+
+.collection .card-wrapper:hover .card,
+#product-grid .card-wrapper:hover .card,
+.product-grid .card-wrapper:hover .card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
+              0 8px 16px rgba(108, 169, 58, 0.2) !important;
+}
+
+/* Card Styling - Apply to Collection Page */
+.collection .card,
+#product-grid .card,
+.product-grid .card {
+  border-radius: 16px !important;
+  overflow: hidden;
+  background: #FFFFFF !important;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
+              0 2px 4px rgba(0, 0, 0, 0.04) !important;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(108, 169, 58, 0.02) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-wrapper:hover .card::before {
+  opacity: 1;
+}
+
+/* Product Image Enhancements */
+.card__media {
+  border-radius: 16px 16px 0 0 !important;
+  overflow: hidden;
+  position: relative;
+}
+
+.card__media::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(108, 169, 58, 0.05) 100%);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card-wrapper:hover .card__media::after {
+  opacity: 1;
+}
+
+.card__media img {
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  transform-origin: center;
+}
+
+.card-wrapper:hover .card__media img {
+  transform: scale(1.1) !important;
+}
+
+/* Card Content Padding */
+.card__content {
+  padding: 1.5rem 2rem !important;
+}
+
+.card__information {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Product Title Styling */
+.card__heading {
+  margin-top: 0 !important;
+  margin-bottom: 0.8rem !important;
+  padding-left: 0 !important;
+}
+
+.card__heading a {
+  color: #121212 !important;
+  font-weight: 600 !important;
+  transition: color 0.3s ease;
+  text-decoration: none !important;
+  display: block;
+  padding-left: 0 !important;
+}
+
+.card-wrapper:hover .card__heading a {
+  color: #6CA93A !important;
+}
+
+/* Price Styling */
+.card-information {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.card-information .price {
+  font-weight: 700 !important;
+  color: #6CA93A !important;
+  font-size: 1.6rem !important;
+  margin-top: 0.5rem !important;
+  padding-left: 0 !important;
+}
+
+.card-information .price--on-sale .price-item--regular {
+  color: #999 !important;
+  text-decoration: line-through;
+  font-weight: 400;
+  margin-right: 0.5rem;
+}
+
+/* Badge Enhancements */
+.card__badge .badge {
+  border-radius: 20px !important;
+  padding: 0.5rem 1rem !important;
+  font-weight: 600 !important;
+  font-size: 1.2rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Sparkle Effect on Cards */
+.card-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.6s linear;
+  pointer-events: none;
+  z-index: 2;
+  transform: rotate(0deg);
+}
+
+.card-wrapper:hover::before {
+  opacity: 0.3;
+  transform: rotate(180deg);
+}
+
+/* Filter and Sort Enhancements */
+.facets,
+.facets__form {
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  margin-bottom: 2rem;
+  animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.facets__heading {
+  color: #6CA93A !important;
+  font-weight: 700 !important;
+  margin-bottom: 1rem !important;
+}
+
+.facets__display,
+.facets__summary {
+  border-radius: 12px !important;
+  transition: all 0.3s ease;
+}
+
+.facets__display:hover,
+.facets__summary:hover {
+  background: rgba(108, 169, 58, 0.05) !important;
+  transform: translateX(4px);
+}
+
+/* Pagination Enhancements */
+.pagination {
+  margin-top: 4rem;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.pagination__item {
+  border-radius: 12px !important;
+  transition: all 0.3s ease;
+}
+
+.pagination__item:hover {
+  background: rgba(108, 169, 58, 0.1) !important;
+  transform: scale(1.1);
+}
+
+.pagination__item--current {
+  background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%) !important;
+  color: #fff !important;
+}
+
+/* Collection Banner Enhancements */
+.collection-hero {
+  position: relative;
+  padding: 3rem 0 !important;
+  background: linear-gradient(135deg, rgba(108, 169, 58, 0.05) 0%, rgba(189, 208, 150, 0.03) 100%);
+  border-radius: 0 0 24px 24px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.collection-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(108, 169, 58, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatElement 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.collection-hero__title {
+  color: #121212 !important;
+  font-weight: 700 !important;
+  position: relative;
+  z-index: 2;
+}
+
+.collection-hero__description {
+  color: rgba(18, 18, 18, 0.7) !important;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+/* Empty State */
+.collection--empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Loading State */
+.loading-overlay {
+  border-radius: 16px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 749px) {
+  .collection {
+    padding: 2rem 0 !important;
+  }
+  
+  .card-wrapper:hover {
+    transform: translateY(-8px) scale(1.01) !important;
+  }
+  
+  .collection-hero__title::after,
+  h1.title::after {
+    width: 40px;
+  }
+  
+  .collection__floating-leaf {
+    width: 25px !important;
+    height: 25px !important;
+  }
+  
+  .collection__floating-orb {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .card-wrapper,
+  .card,
+  .card__media img,
+  .collection-hero__title,
+  .badge,
+  .collection::after,
+  .collection__floating-leaf,
+  .collection__floating-orb,
+  .collection__floating-dew {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .card-wrapper:hover {
+    transform: none !important;
+  }
+}
+
+/* Focus States for Accessibility */
+.card__heading a:focus-visible {
+  outline: 3px solid #6CA93A;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+

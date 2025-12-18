@@ -1,0 +1,548 @@
+{%- if section.settings.enable != false -%}
+{%- style -%}
+  /* IMPORTANT: Only modify page-width for header group, not main content */
+  /* Main content page-width containers will maintain their default centering */
+  
+  /* Calculate moving announcement height */
+  :root {
+    --moving-announcement-height: calc(4px + 2rem + 1.4rem);
+  }
+
+  @media screen and (max-width: 749px) {
+    :root {
+      --moving-announcement-height: calc(4px + 2rem + 1.2rem);
+    }
+  }
+
+  /* CRITICAL: Section wrapper must take ZERO space on desktop */
+  @media screen and (min-width: 750px) {
+    section:has(.moving-announcement),
+    .section:has(.moving-announcement),
+    section.moving-announcement-section {
+      height: 0 !important;
+      min-height: 0 !important;
+      max-height: 0 !important;
+      margin: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      line-height: 0 !important;
+      overflow: hidden !important;
+      display: block !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+      box-sizing: border-box !important;
+      border: none !important;
+    }
+  }
+
+  /* Moving announcement itself - fixed on desktop */
+  .moving-announcement {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100vw;
+    z-index: 10000;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    background-color: #2d423d;
+    color: #dbe7c8;
+    overflow: hidden;
+  }
+
+  .moving-announcement__top-strip {
+    height: 4px;
+    background-color: #6CA93A;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .moving-announcement__content {
+    padding: 1rem 0;
+    margin: 0;
+    line-height: 1.4;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .moving-announcement__wrapper {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll-text var(--animation-speed, 60s) linear infinite;
+    width: max-content;
+  }
+
+  .moving-announcement__wrapper:hover {
+    animation-play-state: paused;
+  }
+
+  .moving-announcement__text {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .moving-announcement__bullet {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #6CA93A;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .moving-announcement__text-content {
+    white-space: nowrap;
+  }
+
+  @keyframes scroll-text {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .moving-announcement__text {
+      font-size: 1.2rem;
+      gap: 1rem;
+      padding: 0 1.5rem;
+    }
+  }
+
+  /* Position header group to account for fixed moving announcement on desktop */
+  @media screen and (min-width: 750px) {
+    body:has(.moving-announcement) .shopify-section-group-header-group {
+      margin-top: 0 !important;
+      padding-top: var(--moving-announcement-height) !important;
+      position: relative;
+    }
+  }
+
+  /* Calculate announcement bar height - increased to fill gap */
+  :root {
+    --announcement-bar-height: 56px;
+    --total-top-height: calc(var(--moving-announcement-height) + var(--announcement-bar-height));
+  }
+
+  @media screen and (min-width: 750px) {
+    :root {
+      --announcement-bar-height: 56px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    :root {
+      --announcement-bar-height: 48px;
+    }
+  }
+
+  /* Make announcement bar sticky below moving announcement */
+  body:has(.moving-announcement) .announcement-bar-section {
+    position: sticky !important;
+    top: var(--moving-announcement-height) !important;
+    z-index: 9998 !important;
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Make navbar sticky below both announcements */
+  body:has(.moving-announcement) .section-header.shopify-section-header-sticky,
+  body:has(.moving-announcement) .shopify-section-header-sticky {
+    position: sticky !important;
+    top: var(--total-top-height) !important;
+    z-index: 9997 !important;
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Remove ALL spacing from header group sections */
+  body:has(.moving-announcement) .shopify-section-group-header-group > section {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Override base.css section spacing - ONLY FOR HEADER GROUP */
+  body:has(.moving-announcement) .shopify-section-group-header-group .section + .section,
+  body:has(.moving-announcement) .shopify-section-group-header-group section + section,
+  body:has(.moving-announcement) .shopify-section-group-header-group > section + section,
+  body:has(.moving-announcement) .announcement-bar-section + .section-header,
+  body:has(.moving-announcement) .announcement-bar-section + section[class*="header"],
+  body:has(.moving-announcement) section[class*="announcement-bar"] + section[class*="header"] {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    gap: 0 !important;
+  }
+
+  /* Remove spacing from header-wrapper and section-header */
+  body:has(.moving-announcement) .header-wrapper {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  body:has(.moving-announcement) .section-header {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Remove spacing from utility bar */
+  body:has(.moving-announcement) .utility-bar,
+  body:has(.moving-announcement) .announcement-bar-section .utility-bar {
+    margin: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 1 !important;
+    border: none !important;
+  }
+
+  /* Remove spacing from utility-bar__grid */
+  body:has(.moving-announcement) .utility-bar__grid {
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 1 !important;
+  }
+
+  /* Remove border from utility bar */
+  body:has(.moving-announcement) .utility-bar--bottom-border,
+  body:has(.moving-announcement) .utility-bar--bottom-border-social-only {
+    border-bottom: none !important;
+    border-top: none !important;
+  }
+
+  /* No body padding - moving announcement is fixed */
+  body:has(.moving-announcement) {
+    padding-top: 0 !important;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Ensure main content doesn't cause horizontal scroll */
+  body:has(.moving-announcement) #MainContent,
+  body:has(.moving-announcement) main {
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Mobile: Prevent horizontal scroll and fix announcement */
+  @media screen and (max-width: 749px) {
+    /* Prevent horizontal scrolling on mobile */
+    html,
+    body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+      position: relative !important;
+    }
+
+    body:has(.moving-announcement) {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+    }
+
+    .shopify-section-group-header-group {
+      position: relative;
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Make moving announcement sticky on mobile */
+    .moving-announcement {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+      height: var(--moving-announcement-height) !important;
+      min-height: var(--moving-announcement-height) !important;
+      z-index: 10000 !important;
+      box-sizing: border-box !important;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      overflow: hidden !important;
+    }
+
+    .moving-announcement__content,
+    .moving-announcement__wrapper {
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    section:has(.moving-announcement),
+    .section:has(.moving-announcement),
+    section.moving-announcement-section {
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      position: relative !important;
+      display: block !important;
+      width: 100% !important;
+      max-width: 100vw !important;
+      overflow: hidden !important;
+      box-sizing: border-box !important;
+    }
+
+    body:has(.moving-announcement) .shopify-section-group-header-group {
+      top: 0 !important;
+      margin-top: 0 !important;
+      padding-top: var(--moving-announcement-height) !important;
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+    }
+
+    /* Prevent horizontal scroll - header and main content */
+
+    /* Ensure hamburger button is visible on mobile - MAXIMUM OVERRIDE */
+    header-drawer,
+    body:has(.moving-announcement) header-drawer,
+    .header header-drawer,
+    .header--compact header-drawer {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      z-index: 10001 !important;
+      position: relative !important;
+      margin-left: 0 !important;
+      margin-right: 1rem !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      max-width: 44px !important;
+      max-height: 44px !important;
+      overflow: visible !important;
+      flex-shrink: 0 !important;
+      pointer-events: auto !important;
+    }
+
+    header-drawer summary,
+    body:has(.moving-announcement) header-drawer summary,
+    .header header-drawer summary,
+    .header--compact header-drawer summary {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      min-height: 44px !important;
+      max-width: 44px !important;
+      max-height: 44px !important;
+      padding: 0.5rem !important;
+      margin: 0 !important;
+      background: transparent !important;
+      border: none !important;
+      cursor: pointer !important;
+      z-index: 10002 !important;
+      position: relative !important;
+      align-items: center !important;
+      justify-content: center !important;
+      pointer-events: auto !important;
+      list-style: none !important;
+    }
+
+    header-drawer summary::-webkit-details-marker,
+    body:has(.moving-announcement) header-drawer summary::-webkit-details-marker {
+      display: none !important;
+    }
+
+    header-drawer .icon,
+    header-drawer svg,
+    header-drawer summary .icon,
+    header-drawer summary svg,
+    header-drawer summary span svg,
+    body:has(.moving-announcement) header-drawer .icon,
+    body:has(.moving-announcement) header-drawer svg,
+    body:has(.moving-announcement) header-drawer summary .icon,
+    body:has(.moving-announcement) header-drawer summary svg,
+    body:has(.moving-announcement) header-drawer summary span svg {
+      width: 24px !important;
+      height: 24px !important;
+      min-width: 24px !important;
+      min-height: 24px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      fill: currentColor !important;
+      color: currentColor !important;
+    }
+
+    /* Ensure header wrapper shows hamburger */
+    body:has(.moving-announcement) .header__heading {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0 !important;
+    }
+
+    /* Ensure header is visible */
+    body:has(.moving-announcement) .header:not(.header--compact) {
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+      min-height: auto !important;
+    }
+
+    body:has(.moving-announcement) .header__icons {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    body:has(.moving-announcement) .header-wrapper {
+      overflow: visible !important;
+      min-height: auto !important;
+    }
+
+    body:has(.moving-announcement) .section-header {
+      overflow: visible !important;
+      min-height: auto !important;
+      margin: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Remove spacing between sections on mobile */
+    body:has(.moving-announcement) .announcement-bar-section + .section-header,
+    body:has(.moving-announcement) .announcement-bar-section + section[class*="header"],
+    body:has(.moving-announcement) section[class*="announcement-bar"] + section[class*="header"] {
+      margin: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+
+    body:has(.moving-announcement) .header-wrapper {
+      margin: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+{%- endstyle -%}
+
+  <div class="moving-announcement" role="region" aria-label="Announcement" {{ section.shopify_attributes }}>
+    <div class="moving-announcement__top-strip"></div>
+    <div class="moving-announcement__content">
+      <div class="moving-announcement__wrapper" style="--animation-speed: {{ section.settings.speed | default: 60 }}s;">
+        {%- assign text_1 = section.settings.text | default: "Boxing Day New year Sale Is Live • From 22 Dec to 1 Jan" -%}
+        {%- assign text_2 = section.settings.text_2 | default: "Limited-time savings on trusted farm solutions." -%}
+        {%- for i in (1..10) -%}
+          <div class="moving-announcement__text">
+            <span class="moving-announcement__bullet"></span>
+            <span class="moving-announcement__text-content">{{ text_1 }}</span>
+            <span class="moving-announcement__bullet"></span>
+            <span class="moving-announcement__text-content">{{ text_2 }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Moving Announcement",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable Moving Announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "Boxing Day New year Sale Is Live • From 22 Dec to 1 Jan"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Second Line Text (Optional)",
+      "default": "Limited-time savings on trusted farm solutions."
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "Animation Speed",
+      "default": 60,
+      "info": "Lower values = faster scrolling"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Moving Announcement",
+      "settings": {
+        "enable": true,
+        "text": "Boxing Day New year Sale Is Live • From 22 Dec to 1 Jan",
+        "text_2": "Limited-time savings on trusted farm solutions.",
+        "speed": 60
+      }
+    }
+  ]
+}
+{% endschema %}
