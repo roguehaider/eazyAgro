@@ -4,7 +4,7 @@
    Color scheme: #6CA93A, #B8D89A, #D1E4B9
    ============================================ */
 
-/* Collection Page Container - Dynamic Height */
+/* Collection Page Container */
 .collection.collection--enhanced,
 .section.color-scheme-1,
 .section.color-scheme-2,
@@ -13,8 +13,7 @@
   overflow: visible;
   padding: 4rem 0 !important;
   background: linear-gradient(180deg, rgba(247, 246, 241, 0.5) 0%, rgba(255, 255, 255, 1) 100%);
-  height: auto !important; /* Dynamic height based on content */
-  min-height: auto !important; /* Remove fixed min-height */
+  min-height: 100vh;
 }
 
 /* Floating Objects Container */
@@ -268,42 +267,14 @@ h1.title::after {
   }
 }
 
-/* Product Grid Container - Border Radius and Padding - Dynamic Height */
-.product-grid-container,
-#ProductGridContainer {
-  border-radius: 20px !important;
-  padding: 1.5rem !important;
-  background: rgba(255, 255, 255, 0.5) !important;
-  margin-top: 2rem;
-  position: relative;
-  z-index: 1 !important; /* Lower than filters */
-  overflow: visible !important; /* Changed from hidden to visible for dynamic height */
-  height: auto !important; /* Dynamic height based on content */
-  min-height: auto !important;
-  max-height: none !important;
-}
-
-/* Ensure collection wrapper also has proper styling - Dynamic Height */
-.collection.collection--enhanced {
-  padding: 2rem 1rem !important;
-  height: auto !important;
-  min-height: auto !important;
-  max-height: none !important;
-  border-radius: 20px
-}
-
-/* Product Grid Enhancements - Dynamic Height */
+/* Product Grid Enhancements */
 .product-grid {
   position: relative;
-  z-index: 1;
-  margin-top: 0;
-  gap: 1.5rem !important;
-  height: auto !important; /* Dynamic height */
-  min-height: auto !important;
-  max-height: none !important;
+  z-index: 2;
+  margin-top: 2rem;
 }
 
-/* Product Card Enhancements - Same as Featured Collection - Reduced Size */
+/* Product Card Enhancements - Same as Featured Collection */
 .collection .card-wrapper,
 #product-grid .card-wrapper,
 .product-grid .card-wrapper {
@@ -311,14 +282,6 @@ h1.title::after {
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
               box-shadow 0.4s ease;
   animation: cardFadeIn 0.6s ease-out both;
-  transform: scale(0.95); /* Reduce product card size */
-  transform-origin: center;
-}
-
-.collection .card-wrapper:hover,
-#product-grid .card-wrapper:hover,
-.product-grid .card-wrapper:hover {
-  transform: translateY(-12px) scale(0.98) !important; /* Slightly larger on hover but still smaller */
 }
 
 @keyframes cardFadeIn {
@@ -380,7 +343,7 @@ h1.title::after {
               0 8px 16px rgba(108, 169, 58, 0.2) !important;
 }
 
-/* Card Styling - Apply to Collection Page - Reduced Size */
+/* Card Styling - Apply to Collection Page */
 .collection .card,
 #product-grid .card,
 .product-grid .card {
@@ -391,13 +354,6 @@ h1.title::after {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
               0 2px 4px rgba(0, 0, 0, 0.04) !important;
   position: relative;
-}
-
-/* Grid item spacing to prevent cards from touching container */
-.collection .grid__item,
-#product-grid .grid__item,
-.product-grid .grid__item {
-  padding: 0.5rem !important;
 }
 
 .card::before {
@@ -448,51 +404,8 @@ h1.title::after {
   transform-origin: center;
 }
 
-/* Remove secondary image hover effect on collection page - only show zoom */
-.collection .card-wrapper:hover .card__media img,
-#product-grid .card-wrapper:hover .card__media img,
-.product-grid .card-wrapper:hover .card__media img {
+.card-wrapper:hover .card__media img {
   transform: scale(1.1) !important;
-}
-
-/* Disable secondary image display on collection page */
-.collection .card__media .media--hover-effect img:nth-of-type(2),
-#product-grid .card__media .media--hover-effect img:nth-of-type(2),
-.product-grid .card__media .media--hover-effect img:nth-of-type(2),
-.collection .card__media img:nth-of-type(2),
-#product-grid .card__media img:nth-of-type(2),
-.product-grid .card__media img:nth-of-type(2) {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
-
-/* Ensure primary image doesn't fade out on collection page - keep it visible */
-.collection .card-wrapper:hover .card__media .media--hover-effect img:first-of-type,
-#product-grid .card-wrapper:hover .card__media .media--hover-effect img:first-of-type,
-.product-grid .card-wrapper:hover .card__media .media--hover-effect img:first-of-type,
-.collection .card-wrapper:hover .card__media img:first-of-type,
-#product-grid .card-wrapper:hover .card__media img:first-of-type,
-.product-grid .card-wrapper:hover .card__media img:first-of-type {
-  opacity: 1 !important;
-  transform: scale(1.1) !important;
-}
-
-/* Override any secondary image styles from featured-products-enhanced.css on collection page */
-.collection .card__media .media--hover-effect img:nth-of-type(2),
-#product-grid .card__media .media--hover-effect img:nth-of-type(2),
-.product-grid .card__media .media--hover-effect img:nth-of-type(2) {
-  position: absolute !important;
-  top: -9999px !important;
-  left: -9999px !important;
-  width: 0 !important;
-  height: 0 !important;
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  z-index: -1 !important;
 }
 
 /* Card Content Padding */
@@ -587,9 +500,9 @@ h1.title::after {
   transform: rotate(180deg);
 }
 
-/* Filter and Sort Enhancements - Higher z-index to be above product container */
-/* Only apply box shadow to the outermost container to avoid multiple shadows */
-.facets-container {
+/* Filter and Sort Enhancements */
+.facets,
+.facets__form {
   border-radius: 16px !important;
   padding: 1.5rem !important;
   background: rgba(255, 255, 255, 0.8) !important;
@@ -597,119 +510,6 @@ h1.title::after {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
   margin-bottom: 2rem;
   animation: fadeInDown 0.6s ease-out;
-  position: relative !important;
-  z-index: 10 !important; /* Higher than product container */
-}
-
-/* Ensure container background stays on hover */
-.facets-container:hover {
-  background: rgba(255, 255, 255, 0.9) !important;
-}
-
-/* Remove box shadows from nested containers */
-.facets,
-.facets__form,
-.facets-wrapper,
-#main-collection-filters {
-  border-radius: 0 !important; /* No border radius on nested containers */
-  padding: 0 !important; /* Remove padding from nested containers */
-  background: transparent !important; /* Transparent background for nested */
-  backdrop-filter: none !important;
-  box-shadow: none !important; /* Remove box shadow from nested containers */
-  margin-bottom: 0 !important;
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-/* Ensure nested containers stay transparent on hover */
-.facets:hover,
-.facets__form:hover,
-.facets-wrapper:hover,
-#main-collection-filters:hover {
-  background: transparent !important;
-}
-
-/* Ensure filter details work properly */
-.facets__disclosure,
-.facets__disclosure-vertical {
-  border-radius: 12px !important;
-  margin-bottom: 0.5rem !important;
-  transition: all 0.3s ease !important;
-}
-
-.facets__disclosure summary,
-.facets__disclosure-vertical summary {
-  cursor: pointer !important;
-  user-select: none;
-  padding: 1rem !important;
-  border-radius: 12px !important;
-  transition: background-color 0.3s ease !important;
-}
-
-.facets__disclosure summary:hover,
-.facets__disclosure-vertical summary:hover {
-  background: rgba(108, 169, 58, 0.05) !important;
-  opacity: 1 !important; /* Ensure no transparency on hover */
-}
-
-/* Ensure filter buttons and dropdowns maintain background on hover */
-.facets__summary:hover,
-.facets__disclosure:hover,
-.facets__disclosure-vertical:hover {
-  background: transparent !important;
-  opacity: 1 !important;
-}
-
-/* Ensure filter display maintains background on hover - solid white */
-.facets__display:hover,
-.facets__display-vertical:hover {
-  background: rgb(255, 255, 255) !important; /* Solid white on hover */
-  background-color: rgb(255, 255, 255) !important;
-  opacity: 1 !important;
-}
-
-.facets__disclosure[open] summary,
-.facets__disclosure-vertical[open] summary {
-  background: rgba(108, 169, 58, 0.1) !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-}
-
-.facets__display,
-.facets__display-vertical {
-  border-radius: 0 0 12px 12px !important;
-  padding: 1rem !important;
-  background: rgba(255, 255, 255, 1) !important; /* Solid white background */
-  background-color: rgb(255, 255, 255) !important; /* Ensure solid background */
-  border-top: 1px solid rgba(108, 169, 58, 0.1) !important;
-  opacity: 1 !important; /* Ensure full opacity */
-}
-
-/* When filter is open and display is hovered - maintain solid background */
-.facets__disclosure[open] .facets__display:hover,
-.facets__disclosure-vertical[open] .facets__display-vertical:hover,
-.facets__disclosure[open]:hover .facets__display,
-.facets__disclosure-vertical[open]:hover .facets__display-vertical {
-  background: rgb(255, 255, 255) !important; /* Solid white on hover */
-  background-color: rgb(255, 255, 255) !important;
-  opacity: 1 !important;
-}
-
-/* Ensure the entire disclosure maintains background when open and hovered */
-.facets__disclosure[open]:hover,
-.facets__disclosure-vertical[open]:hover {
-  background: transparent !important; /* Keep disclosure transparent */
-}
-
-/* Ensure filter header maintains background */
-.facets__header {
-  background-color: rgb(255, 255, 255) !important;
-  opacity: 1 !important;
-}
-
-.facets__header:hover {
-  background-color: rgb(255, 255, 255) !important;
-  opacity: 1 !important;
 }
 
 @keyframes fadeInDown {
@@ -729,24 +529,16 @@ h1.title::after {
   margin-bottom: 1rem !important;
 }
 
+.facets__display,
 .facets__summary {
   border-radius: 12px !important;
   transition: all 0.3s ease;
 }
 
-/* Only apply green background to summary, not to display dropdown */
-/* Remove transform to prevent shaking when hovering on other filters */
+.facets__display:hover,
 .facets__summary:hover {
   background: rgba(108, 169, 58, 0.05) !important;
-  transform: none !important; /* Remove transform to prevent shaking */
-}
-
-/* Display dropdown should maintain white background on hover */
-.facets__display:hover {
-  background: rgb(255, 255, 255) !important;
-  background-color: rgb(255, 255, 255) !important;
-  opacity: 1 !important;
-  transform: none !important; /* No transform on dropdown */
+  transform: translateX(4px);
 }
 
 /* Pagination Enhancements */
