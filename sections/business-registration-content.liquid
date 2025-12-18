@@ -1,0 +1,407 @@
+{{ 'section-rich-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient rich-text content-container section-{{ section.id }}-padding">
+  <div class="rich-text__wrapper rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
+    <div class="rich-text__blocks {{ section.settings.content_alignment }}">
+      {%- if section.settings.intro_heading != blank -%}
+        <h2 class="rich-text__heading rte inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.intro_heading }}
+        </h2>
+      {%- endif -%}
+      
+      {%- if section.settings.intro_text != blank -%}
+        <div class="rich-text__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {{ section.settings.intro_text }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_why_partner -%}
+        <div class="business-registration__section{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {%- if section.settings.why_heading != blank -%}
+            <h3 class="business-registration__section-heading">{{ section.settings.why_heading }}</h3>
+          {%- endif -%}
+          
+          {%- if section.blocks.size > 0 -%}
+            <ul class="business-registration__benefits-list">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'benefit' -%}
+                  <li class="business-registration__benefit-item" {{ block.shopify_attributes }}>
+                    <span class="business-registration__checkmark">•</span>
+                    <span class="business-registration__benefit-text">{{ block.settings.benefit_text }}</span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_who_can_apply -%}
+        <div class="business-registration__section{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {%- if section.settings.who_heading != blank -%}
+            <h3 class="business-registration__section-heading">{{ section.settings.who_heading }}</h3>
+          {%- endif -%}
+          
+          {%- if section.settings.who_text != blank -%}
+            <p class="business-registration__section-text">{{ section.settings.who_text }}</p>
+          {%- endif -%}
+          
+          {%- if section.blocks.size > 0 -%}
+            <ul class="business-registration__benefits-list">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'business_type' -%}
+                  <li class="business-registration__benefit-item" {{ block.shopify_attributes }}>
+                    <span class="business-registration__checkmark">•</span>
+                    <span class="business-registration__benefit-text">{{ block.settings.business_type_text }}</span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.registration_text != blank -%}
+        <div class="business-registration__section{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <div class="rich-text__text rte">
+            {{ section.settings.registration_text }}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<style>
+  .business-registration__section {
+    margin-top: 3rem;
+  }
+
+  .business-registration__section-heading {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: rgb(var(--color-foreground));
+  }
+
+  .business-registration__section-text {
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+
+  .business-registration__benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .business-registration__benefit-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+
+  .business-registration__checkmark {
+    color: #6CA93A;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .business-registration__benefit-text {
+    flex: 1;
+  }
+
+  @media screen and (min-width: 750px) {
+    .business-registration__section-heading {
+      font-size: 2.8rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Biz Registration Content",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Introduction"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "intro_heading",
+      "label": "Introduction Heading",
+      "default": "Wholesale & Distribution Partners – EazyAgro"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "richtext",
+      "id": "intro_text",
+      "label": "Introduction Text",
+      "default": "<p>EazyAgro is a wholesale supplier of premium agricultural, industrial, and commercial netting solutions, produced to international quality standards. We supply trade partners across agriculture, horticulture, construction, sports infrastructure, fisheries, and industrial sectors.<br/><br/>All products are engineered for durability, UV resistance, and long-term performance, making them suitable for commercial farms, nurseries, Garden Suppliers, large-scale projects, and Landscapers.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Why Partner Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_why_partner",
+      "label": "Show Why Partner section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "why_heading",
+      "label": "Why Partner Heading",
+      "default": "Why Partner with EazyAgro"
+    },
+    {
+      "type": "header",
+      "content": "Who Can Apply Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_who_can_apply",
+      "label": "Show Who Can Apply section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "who_heading",
+      "label": "Who Can Apply Heading",
+      "default": "Who Can Apply"
+    },
+    {
+      "type": "text",
+      "id": "who_text",
+      "label": "Who Can Apply Text",
+      "default": "Wholesale access is available to registered businesses only, including:"
+    },
+    {
+      "type": "header",
+      "content": "Registration Text"
+    },
+    {
+      "type": "richtext",
+      "id": "registration_text",
+      "label": "Registration Text",
+      "default": "<p><strong>Wholesale Registration</strong><br/><br/>To access wholesale pricing, volume discounts, and exclusive trade offers, please complete the wholesale registration form below and submit your business registration details.<br/><br/>Once approved, our team will contact you with:<br/>• Wholesale price list<br/>• Minimum order quantities (MOQs)<br/>• Distributor & bulk purchase options<br/><br/>Apply today and partner with EazyAgro — your trusted wholesale netting manufacturer.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Desktop content position",
+      "info": "Position is automatically optimized for mobile."
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left",
+      "label": "Content alignment"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": false,
+      "label": "Make section full width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "benefit_text",
+          "label": "Benefit Text",
+          "default": "Manufacturer-direct wholesale pricing"
+        }
+      ]
+    },
+    {
+      "type": "business_type",
+      "name": "Business Type",
+      "settings": [
+        {
+          "type": "text",
+          "id": "business_type_text",
+          "label": "Business Type Text",
+          "default": "Distributors & Wholesalers"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Biz Registration Content",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Manufacturer-direct wholesale pricing"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Consistent quality & bulk supply capability"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Trade & project-based order support"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Technical guidance for product selection"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "benefit_text": "Reliable logistics & fast order processing"
+          }
+        },
+        {
+          "type": "business_type",
+          "settings": {
+            "business_type_text": "Distributors & Wholesalers"
+          }
+        },
+        {
+          "type": "business_type",
+          "settings": {
+            "business_type_text": "Agricultural & Horticultural Suppliers"
+          }
+        },
+        {
+          "type": "business_type",
+          "settings": {
+            "business_type_text": "Retail & Wholesale Nurseries"
+          }
+        },
+        {
+          "type": "business_type",
+          "settings": {
+            "business_type_text": "Civil, Landscape & Construction Contractors"
+          }
+        },
+        {
+          "type": "business_type",
+          "settings": {
+            "business_type_text": "Exporters & Project Buyers"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
