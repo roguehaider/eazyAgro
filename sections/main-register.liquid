@@ -1,6 +1,18 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  /* Hide navbar and footer on register page */
+  .shopify-section-group-header-group,
+  .shopify-section-group-footer-group,
+  header,
+  footer {
+    display: none !important;
+  }
+  
+  body {
+    grid-template-rows: 1fr !important;
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -14,124 +26,307 @@
   }
 {%- endstyle -%}
 
-<div class="customer register section-{{ section.id }}-padding">
-  <h1>
-    {{ 'customer.register.title' | t }}
-  </h1>
-  {%- form 'create_customer', novalidate: 'novalidate' -%}
-    {%- if form.errors -%}
-      <h2 class="form__message" tabindex="-1" autofocus>
-        <span class="svg-wrapper">
-          {{- 'icon-error.svg' | inline_asset_content -}}
-        </span>
-        {{ 'templates.contact.form.error_heading' | t }}
-      </h2>
-      <ul>
-        {%- for field in form.errors -%}
-          <li>
-            {%- if field == 'form' -%}
-              {{ form.errors.messages[field] }}
-            {%- else -%}
-              <a href="#RegisterForm-{{ field }}">
-                {{ form.errors.translated_fields[field] | capitalize }}
-                {{ form.errors.messages[field] }}
-              </a>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    {%- endif -%}
-    <div class="field">
-      <input
-        type="text"
-        name="customer[first_name]"
-        id="RegisterForm-FirstName"
-        {% if form.first_name %}
-          value="{{ form.first_name }}"
-        {% endif %}
-        autocomplete="given-name"
-        placeholder="{{ 'customer.register.first_name' | t }}"
-      >
-      <label for="RegisterForm-FirstName">
-        {{ 'customer.register.first_name' | t }}
-      </label>
+<div class="minimal-login-wrapper section-{{ section.id }}-padding">
+  <div class="minimal-login-container">
+    <div class="minimal-login-card">
+      <div class="minimal-login-header">
+        <h1 class="minimal-login-title">{{ 'customer.register.title' | t }}</h1>
+        <p class="minimal-login-subtitle">Create your account to get started</p>
+      </div>
+
+      {%- form 'create_customer', novalidate: 'novalidate', class: 'minimal-login-form' -%}
+        {%- if form.errors -%}
+          <div class="minimal-login-error">
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            <div>
+              <strong>{{ 'templates.contact.form.error_heading' | t }}</strong>
+              <ul style="margin: 0.5rem 0 0 0; padding-left: 2rem;">
+                {%- for field in form.errors -%}
+                  <li>
+                    {%- if field == 'form' -%}
+                      {{ form.errors.messages[field] }}
+                    {%- else -%}
+                      {{ form.errors.translated_fields[field] | capitalize }}
+                      {{ form.errors.messages[field] }}
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="minimal-login-field">
+          <input
+            type="text"
+            name="customer[first_name]"
+            id="RegisterForm-FirstName"
+            class="minimal-login-input"
+            {% if form.first_name %}
+              value="{{ form.first_name }}"
+            {% endif %}
+            autocomplete="given-name"
+            placeholder="{{ 'customer.register.first_name' | t }}"
+            required
+          >
+        </div>
+
+        <div class="minimal-login-field">
+          <input
+            type="text"
+            name="customer[last_name]"
+            id="RegisterForm-LastName"
+            class="minimal-login-input"
+            {% if form.last_name %}
+              value="{{ form.last_name }}"
+            {% endif %}
+            autocomplete="family-name"
+            placeholder="{{ 'customer.register.last_name' | t }}"
+            required
+          >
+        </div>
+
+        <div class="minimal-login-field">
+          <input
+            type="email"
+            name="customer[email]"
+            id="RegisterForm-email"
+            class="minimal-login-input"
+            {% if form.email %}
+              value="{{ form.email }}"
+            {% endif %}
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="email"
+            aria-required="true"
+            {% if form.errors contains 'email' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-email-error"
+            {% endif %}
+            placeholder="{{ 'customer.register.email' | t }}"
+            required
+          >
+        </div>
+        {%- if form.errors contains 'email' -%}
+          <div class="minimal-login-error" id="RegisterForm-email-error">
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            {{ form.errors.translated_fields.email | capitalize }}
+            {{ form.errors.messages.email }}.
+          </div>
+        {%- endif -%}
+
+        <div class="minimal-login-field">
+          <input
+            type="password"
+            name="customer[password]"
+            id="RegisterForm-password"
+            class="minimal-login-input"
+            aria-required="true"
+            {% if form.errors contains 'password' %}
+              aria-invalid="true"
+              aria-describedby="RegisterForm-password-error"
+            {% endif %}
+            placeholder="{{ 'customer.register.password' | t }}"
+            required
+          >
+        </div>
+        {%- if form.errors contains 'password' -%}
+          <div class="minimal-login-error" id="RegisterForm-password-error">
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            {{ form.errors.translated_fields.password | capitalize }}
+            {{ form.errors.messages.password }}.
+          </div>
+        {%- endif -%}
+
+        <button type="submit" class="minimal-login-button">
+          {{ 'customer.register.submit' | t }}
+        </button>
+
+        <div class="minimal-login-register">
+          <p>Already have an account? <a href="{{ routes.account_login_url }}" class="minimal-login-link minimal-login-link--primary">Sign in</a></p>
+        </div>
+      {%- endform -%}
     </div>
-    <div class="field">
-      <input
-        type="text"
-        name="customer[last_name]"
-        id="RegisterForm-LastName"
-        {% if form.last_name %}
-          value="{{ form.last_name }}"
-        {% endif %}
-        autocomplete="family-name"
-        placeholder="{{ 'customer.register.last_name' | t }}"
-      >
-      <label for="RegisterForm-LastName">
-        {{ 'customer.register.last_name' | t }}
-      </label>
-    </div>
-    <div class="field">
-      <input
-        type="email"
-        name="customer[email]"
-        id="RegisterForm-email"
-        {% if form.email %}
-          value="{{ form.email }}"
-        {% endif %}
-        spellcheck="false"
-        autocapitalize="off"
-        autocomplete="email"
-        aria-required="true"
-        {% if form.errors contains 'email' %}
-          aria-invalid="true"
-          aria-describedby="RegisterForm-email-error"
-        {% endif %}
-        placeholder="{{ 'customer.register.email' | t }}"
-      >
-      <label for="RegisterForm-email">
-        {{ 'customer.register.email' | t }}
-      </label>
-    </div>
-    {%- if form.errors contains 'email' -%}
-      <span id="RegisterForm-email-error" class="form__message">
-        <span class="svg-wrapper">
-          {{- 'icon-error.svg' | inline_asset_content -}}
-        </span>
-        {{ form.errors.translated_fields.email | capitalize }}
-        {{ form.errors.messages.email }}.
-      </span>
-    {%- endif -%}
-    <div class="field">
-      <input
-        type="password"
-        name="customer[password]"
-        id="RegisterForm-password"
-        aria-required="true"
-        {% if form.errors contains 'password' %}
-          aria-invalid="true"
-          aria-describedby="RegisterForm-password-error"
-        {% endif %}
-        placeholder="{{ 'customer.register.password' | t }}"
-      >
-      <label for="RegisterForm-password">
-        {{ 'customer.register.password' | t }}
-      </label>
-    </div>
-    {%- if form.errors contains 'password' -%}
-      <span id="RegisterForm-password-error" class="form__message">
-        <span class="svg-wrapper">
-          {{- 'icon-error.svg' | inline_asset_content -}}
-        </span>
-        {{ form.errors.translated_fields.password | capitalize }}
-        {{ form.errors.messages.password }}.
-      </span>
-    {%- endif -%}
-    <button>
-      {{ 'customer.register.submit' | t }}
-    </button>
-  {%- endform -%}
+  </div>
 </div>
+
+<style>
+  .minimal-login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #F7F6F1 0%, #FFFFFF 100%);
+    padding: 2rem;
+  }
+
+  .minimal-login-container {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .minimal-login-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 4rem 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(108, 169, 58, 0.1);
+  }
+
+  .minimal-login-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .minimal-login-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: rgb(var(--color-foreground));
+    margin-bottom: 0.5rem;
+  }
+
+  .minimal-login-subtitle {
+    font-size: 1.4rem;
+    color: rgba(var(--color-foreground), 0.7);
+    margin: 0;
+  }
+
+  .minimal-login-form {
+    width: 100%;
+  }
+
+  .minimal-login-field {
+    margin-bottom: 1.5rem;
+  }
+
+  .minimal-login-input {
+    width: 100%;
+    padding: 1.4rem 1.8rem;
+    font-size: 1.6rem;
+    border: 2px solid rgba(108, 169, 58, 0.2);
+    border-radius: 12px;
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  .minimal-login-input:focus {
+    outline: none;
+    border: 2px solid #6CA93A;
+    box-shadow: 0 4px 16px rgba(108, 169, 58, 0.2);
+  }
+
+  .minimal-login-input::placeholder {
+    color: rgba(18, 18, 18, 0.5);
+  }
+
+  .minimal-login-button {
+    width: 100%;
+    background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%);
+    color: #FFFFFF;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(108, 169, 58, 0.3);
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+
+  .minimal-login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 169, 58, 0.4);
+  }
+
+  .minimal-login-button:active {
+    transform: translateY(0);
+  }
+
+  .minimal-login-link {
+    color: #6CA93A;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+  }
+
+  .minimal-login-link:hover {
+    color: #5A8A2E;
+    text-decoration: underline;
+  }
+
+  .minimal-login-link--primary {
+    font-weight: 600;
+  }
+
+  .minimal-login-register {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(108, 169, 58, 0.1);
+  }
+
+  .minimal-login-register p {
+    font-size: 1.4rem;
+    color: rgba(var(--color-foreground), 0.7);
+    margin: 0;
+  }
+
+  .minimal-login-error {
+    background: rgba(220, 38, 38, 0.1);
+    color: #DC2626;
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 1.4rem;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .minimal-login-error ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 2rem;
+  }
+
+  /* Mobile Responsive */
+  @media screen and (max-width: 749px) {
+    .minimal-login-wrapper {
+      padding: 1rem;
+    }
+
+    .minimal-login-card {
+      padding: 3rem 2rem;
+    }
+
+    .minimal-login-title {
+      font-size: 2.4rem;
+    }
+
+    .minimal-login-subtitle {
+      font-size: 1.3rem;
+    }
+
+    .minimal-login-input {
+      padding: 1.2rem 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .minimal-login-button {
+      padding: 1.3rem;
+      font-size: 1.6rem;
+    }
+  }
+</style>
 
 {% schema %}
 {
@@ -149,7 +344,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 0
     },
     {
       "type": "range",
@@ -159,7 +354,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 0
     }
   ]
 }

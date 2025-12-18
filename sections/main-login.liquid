@@ -1,6 +1,18 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  /* Hide navbar and footer on login page */
+  .shopify-section-group-header-group,
+  .shopify-section-group-footer-group,
+  header,
+  footer {
+    display: none !important;
+  }
+  
+  body {
+    grid-template-rows: 1fr !important;
+  }
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -18,156 +30,318 @@
   {%- assign hide_shop_login_button = true -%}
 {%- endif -%}
 
-<div class="customer login section-{{ section.id }}-padding">
-  <h1 id="recover" tabindex="-1">
-    {{ 'customer.recover_password.title' | t }}
-  </h1>
-  <div>
-    <p>
-      {{ 'customer.recover_password.subtext' | t }}
-    </p>
-
-    {%- form 'recover_customer_password' -%}
-      {% assign recover_success = form.posted_successfully? %}
-      <div class="field">
-        <input
-          type="email"
-          value=""
-          name="email"
-          id="RecoverEmail"
-          autocorrect="off"
-          autocapitalize="off"
-          autocomplete="email"
-          {% if form.errors %}
-            aria-invalid="true"
-            aria-describedby="RecoverEmail-email-error"
-            autofocus
-          {% endif %}
-          placeholder="{{ 'customer.login_page.email' | t }}"
-        >
-        <label for="RecoverEmail">
-          {{ 'customer.login_page.email' | t }}
-        </label>
-      </div>
-      {%- if form.errors -%}
-        <small id="RecoverEmail-email-error" class="form__message">
-          <span class="svg-wrapper">
-            {{- 'icon-error.svg' | inline_asset_content -}}
-          </span>
-          {{ form.errors.messages.form }}
-        </small>
-      {%- endif -%}
-
-      <button>
-        {{ 'customer.login_page.submit' | t }}
-      </button>
-
-      <a href="#login">
-        {{ 'customer.login_page.cancel' | t }}
-      </a>
-    {%- endform -%}
-  </div>
-
-  <h1 id="login" tabindex="-1">
-    {{ 'customer.login_page.title' | t }}
-  </h1>
-  <div>
-    {%- if recover_success == true -%}
-      <h3 class="form__message" tabindex="-1" autofocus>
-        <span class="svg-wrapper">
-          {{- 'icon-success.svg' | inline_asset_content -}}
-        </span>
-        {{ 'customer.recover_password.success' | t }}
-      </h3>
-    {%- endif -%}
-    {%- form 'customer_login', novalidate: 'novalidate' -%}
-      {%- if form.errors -%}
-        <h2 class="form__message" tabindex="-1" autofocus>
-          <span class="visually-hidden">{{ 'accessibility.error' | t }} </span>
-          <span class="svg-wrapper">
-            {{- 'icon-error.svg' | inline_asset_content -}}
-          </span>
-          {{ 'templates.contact.form.error_heading' | t }}
-        </h2>
-        {{ form.errors | default_errors }}
-      {%- endif -%}
-
-      {%- if shop.features.login_with_shop_classic_customer_accounts? -%}
-        <section name="sign-in-with-shop-provider">
-          {{ shop | login_button: hide_button: hide_shop_login_button }}
-
-          {%- unless hide_shop_login_button -%}
-            <p>
-              {{ 'customer.login_page.alternate_provider_separator' | t }}
-            </p>
-          {%- endunless -%}
-        </section>
-      {%- endif -%}
-
-      <div class="field">
-        <input
-          type="email"
-          name="customer[email]"
-          id="CustomerEmail"
-          autocomplete="email"
-          autocorrect="off"
-          autocapitalize="off"
-          {% if form.errors contains 'form' %}
-            aria-invalid="true"
-          {% endif %}
-          placeholder="{{ 'customer.login_page.email' | t }}"
-        >
-        <label for="CustomerEmail">
-          {{ 'customer.login_page.email' | t }}
-        </label>
+<div class="minimal-login-wrapper section-{{ section.id }}-padding">
+  <div class="minimal-login-container">
+    <div class="minimal-login-card">
+      <div class="minimal-login-header">
+        <h1 class="minimal-login-title">{{ 'customer.login_page.title' | t }}</h1>
+        <p class="minimal-login-subtitle">Sign in to your account</p>
       </div>
 
-      {%- if form.password_needed -%}
-        <div class="field">
+      {%- form 'customer_login', novalidate: 'novalidate', class: 'minimal-login-form' -%}
+        {%- if form.errors -%}
+          <div class="minimal-login-error">
+            <span class="svg-wrapper">
+              {{- 'icon-error.svg' | inline_asset_content -}}
+            </span>
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="minimal-login-field">
           <input
-            type="password"
-            value=""
-            name="customer[password]"
-            id="CustomerPassword"
-            autocomplete="current-password"
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            class="minimal-login-input"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
             {% if form.errors contains 'form' %}
               aria-invalid="true"
             {% endif %}
-            placeholder="{{ 'customer.login_page.password' | t }}"
+            placeholder="{{ 'customer.login_page.email' | t }}"
+            required
           >
-          <label for="CustomerPassword">
-            {{ 'customer.login_page.password' | t }}
-          </label>
         </div>
 
-        <a href="#recover">
-          {{ 'customer.login_page.forgot_password' | t }}
-        </a>
-      {%- endif -%}
+        {%- if form.password_needed -%}
+          <div class="minimal-login-field">
+            <input
+              type="password"
+              value=""
+              name="customer[password]"
+              id="CustomerPassword"
+              class="minimal-login-input"
+              autocomplete="current-password"
+              {% if form.errors contains 'form' %}
+                aria-invalid="true"
+              {% endif %}
+              placeholder="{{ 'customer.login_page.password' | t }}"
+              required
+            >
+          </div>
 
-      <button>
-        {{ 'customer.login_page.sign_in' | t }}
-      </button>
+          <div class="minimal-login-forgot">
+            <a href="#recover" class="minimal-login-link">
+              {{ 'customer.login_page.forgot_password' | t }}
+            </a>
+          </div>
+        {%- endif -%}
 
-      <a href="{{ routes.account_register_url }}">
-        {{ 'customer.login_page.create_account' | t }}
-      </a>
-    {%- endform -%}
-  </div>
-
-  {%- if shop.checkout.guest_login -%}
-    <div>
-      <hr>
-      <h2>{{ 'customer.login_page.guest_title' | t }}</h2>
-
-      {%- form 'guest_login' -%}
-        <button>
-          {{ 'customer.login_page.guest_continue' | t }}
+        <button type="submit" class="minimal-login-button">
+          {{ 'customer.login_page.sign_in' | t }}
         </button>
+
+        <div class="minimal-login-register">
+          <p>Don't have an account? <a href="{{ routes.account_register_url }}" class="minimal-login-link minimal-login-link--primary">{{ 'customer.login_page.create_account' | t }}</a></p>
+        </div>
       {%- endform -%}
+
+      <!-- Password Recovery Section -->
+      <div id="recover" class="minimal-login-recover" style="display: none;">
+        <div class="minimal-login-header">
+          <h2 class="minimal-login-title">{{ 'customer.recover_password.title' | t }}</h2>
+          <p class="minimal-login-subtitle">{{ 'customer.recover_password.subtext' | t }}</p>
+        </div>
+
+        {%- form 'recover_customer_password', class: 'minimal-login-form' -%}
+          <div class="minimal-login-field">
+            <input
+              type="email"
+              value=""
+              name="email"
+              id="RecoverEmail"
+              class="minimal-login-input"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              placeholder="{{ 'customer.login_page.email' | t }}"
+              required
+            >
+          </div>
+
+          <button type="submit" class="minimal-login-button">
+            {{ 'customer.login_page.submit' | t }}
+          </button>
+
+          <div class="minimal-login-register">
+            <a href="#login" class="minimal-login-link">{{ 'customer.login_page.cancel' | t }}</a>
+          </div>
+        {%- endform -%}
+      </div>
     </div>
-  {%- endif -%}
+  </div>
 </div>
+
+<style>
+  .minimal-login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #F7F6F1 0%, #FFFFFF 100%);
+    padding: 2rem;
+  }
+
+  .minimal-login-container {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .minimal-login-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 4rem 3rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(108, 169, 58, 0.1);
+  }
+
+  .minimal-login-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .minimal-login-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: rgb(var(--color-foreground));
+    margin-bottom: 0.5rem;
+  }
+
+  .minimal-login-subtitle {
+    font-size: 1.4rem;
+    color: rgba(var(--color-foreground), 0.7);
+    margin: 0;
+  }
+
+  .minimal-login-form {
+    width: 100%;
+  }
+
+  .minimal-login-field {
+    margin-bottom: 1.5rem;
+  }
+
+  .minimal-login-input {
+    width: 100%;
+    padding: 1.4rem 1.8rem;
+    font-size: 1.6rem;
+    border: 2px solid rgba(108, 169, 58, 0.2);
+    border-radius: 12px;
+    background: #FFFFFF;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  .minimal-login-input:focus {
+    outline: none;
+    border: 2px solid #6CA93A;
+    box-shadow: 0 4px 16px rgba(108, 169, 58, 0.2);
+  }
+
+  .minimal-login-input::placeholder {
+    color: rgba(18, 18, 18, 0.5);
+  }
+
+  .minimal-login-forgot {
+    text-align: right;
+    margin-bottom: 2rem;
+  }
+
+  .minimal-login-button {
+    width: 100%;
+    background: linear-gradient(135deg, #6CA93A 0%, #5A8A2E 100%);
+    color: #FFFFFF;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(108, 169, 58, 0.3);
+    margin-bottom: 2rem;
+  }
+
+  .minimal-login-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 169, 58, 0.4);
+  }
+
+  .minimal-login-button:active {
+    transform: translateY(0);
+  }
+
+  .minimal-login-link {
+    color: #6CA93A;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+  }
+
+  .minimal-login-link:hover {
+    color: #5A8A2E;
+    text-decoration: underline;
+  }
+
+  .minimal-login-link--primary {
+    font-weight: 600;
+  }
+
+  .minimal-login-register {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(108, 169, 58, 0.1);
+  }
+
+  .minimal-login-register p {
+    font-size: 1.4rem;
+    color: rgba(var(--color-foreground), 0.7);
+    margin: 0;
+  }
+
+  .minimal-login-error {
+    background: rgba(220, 38, 38, 0.1);
+    color: #DC2626;
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1.4rem;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .minimal-login-recover {
+    display: none;
+  }
+
+  #recover:target {
+    display: block;
+  }
+
+  #recover:target ~ .minimal-login-form {
+    display: none;
+  }
+
+  /* Mobile Responsive */
+  @media screen and (max-width: 749px) {
+    .minimal-login-wrapper {
+      padding: 1rem;
+    }
+
+    .minimal-login-card {
+      padding: 3rem 2rem;
+    }
+
+    .minimal-login-title {
+      font-size: 2.4rem;
+    }
+
+    .minimal-login-subtitle {
+      font-size: 1.3rem;
+    }
+
+    .minimal-login-input {
+      padding: 1.2rem 1.5rem;
+      font-size: 1.5rem;
+    }
+
+    .minimal-login-button {
+      padding: 1.3rem;
+      font-size: 1.6rem;
+    }
+  }
+</style>
+
+<script>
+  // Handle password recovery toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const recoverLink = document.querySelector('a[href="#recover"]');
+    const cancelLink = document.querySelector('a[href="#login"]');
+    const loginForm = document.querySelector('#login .minimal-login-form');
+    const recoverForm = document.querySelector('#recover');
+
+    if (recoverLink) {
+      recoverLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (loginForm) loginForm.closest('.minimal-login-card').querySelector('.minimal-login-form').style.display = 'none';
+        if (recoverForm) recoverForm.style.display = 'block';
+      });
+    }
+
+    if (cancelLink) {
+      cancelLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (recoverForm) recoverForm.style.display = 'none';
+        if (loginForm) loginForm.closest('.minimal-login-card').querySelector('.minimal-login-form').style.display = 'block';
+      });
+    }
+  });
+</script>
 
 {% schema %}
 {
